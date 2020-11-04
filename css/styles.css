@@ -57,12 +57,18 @@ canvas {
     font-weight: 300;
     color: var(--gry);
     margin: 10px 30px;
-    font-size: 14px;
+    font-size: 12px;
 }
 
 .navig:hover {
     color: white;
     cursor: pointer;
+}
+.naviglabel {
+    display: none;
+}
+.navig:hover > .naviglabel {
+    display: inline;
 }
 
 .navigation {

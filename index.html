@@ -16,12 +16,16 @@
     <!--P5-->
     <script src="js/p5.js"></script>
     <script src="js/sketch.js"></script>
+    <!--aos-->
+    <link rel="stylesheet" href="css/aos.css">
+    <!--fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Sacramento&display=swap" rel="stylesheet">
 
 </head>
 
-<body style="color: white;">
-
-    <div class="navigation">
+<body style="color: var(--gry);">
+    <div class="navigation" data-aos="fade-in">
         <div>
             <div class="navig" onclick="nav(1);"><i class="fa fa-circle"></i> Section 1</div>
             <div class="navig" onclick="nav(2);"><i class="fa fa-circle"></i> Section 2</div>
@@ -29,22 +33,23 @@
         </div>
     </div>
 
-    <section id="section1">
+    <section class="fullPage" id="section1">
         <div id="p5"></div>
-        <div></div>
+        <div class="introText" data-aos="fade-in">
+            <h3 class="cursive">a short title</h3>
+            <p class="shortText">This data visualization applauds at the counter-hegemonic voices raised throughout history, in support of the marginalized, silenced, under-represented minorities' journey towards social justice. </p>
+        </div>
     </section>
-    <section class="fullPage" id="section2">
+    <section class="fullPage fullPagePadding" id="section2">
         <p>This is section 2</p>
     </section>
-    <section class="fullPage" id="section3">
+    <section class="fullPage fullPagePadding" id="section3">
         <p>This is section 3</p>
     </section>
 
     <section class="footer">
         <p>This is one small section</p>
     </section>
-
-
 
 
     <!--boostrap & jquery-->
@@ -54,7 +59,6 @@
     <script src="https://d3js.org/d3.v6.min.js"></script>
     <!--vanilla JS-->
     <script src="js/main.js"></script>
+    <script src="js/aos.js"></script>
     <script src="js/animate.js"></script>
-</body>
-
-</html>
+</body></html>

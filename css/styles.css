@@ -1,30 +1,67 @@
 :root {
+    --gry: #c9c9c7;
     --bkColor: black;
-    --horizontalMargin: 5vw;
+    --horizontalMargin: 125px;
+    --font: 'Roboto', sans-serif;
 }
 
 body {
     background-color: var(--bkColor) !important;
 }
 
-section.footer {
-    padding: 0 var(--horizontalMargin) 0 calc(var(--horizontalMargin) * 2);
+p {
+    font-family: var(--font);
+    font-weight: 300;
+    font-size: 14px;
 }
 
-section.fullPage {
-    padding: 0 var(--horizontalMargin) 0 calc(var(--horizontalMargin) * 2);
+h3.cursive {
+    font-size: 52px;
+    font-family: 'Sacramento', cursive !important;
+    letter-spacing: 5px;
+    font-weight: 300 !important;
+    margin-bottom: 15px;
+}
+
+section.footer {
+    padding: 0 var(--horizontalMargin);
+}
+
+.fullPage {
     height: 100vh;
+}
+
+.fullPagePadding {
+    padding: 0 var(--horizontalMargin);
     width: 100vw;
 }
 
+.shortText {
+    padding: 0 calc(var(--horizontalMargin)*4);
+}
+
+canvas {
+    z-index: -3 !important;
+}
+
+.introText {
+    position: absolute;
+    margin-top: -30vh;
+    width: 100%;
+    z-index: 99 !important;
+    text-align: center;
+}
+
 .navig {
-    color: white;
+    font-family: var(--font);
+    font-weight: 300;
+    color: var(--gry);
     margin: 10px 30px;
     font-size: 14px;
 }
 
 .navig:hover {
-    color: pink;
+    color: white;
     cursor: pointer;
 }
 
@@ -38,7 +75,7 @@ section.fullPage {
 }
 
 #section1 {
-/*
+    /*
     background: url("https://static.dezeen.com/uploads/2020/06/black-lives-matter-illustrations-roundup-hero-1.jpg");
     background-repeat: no-repeat;
     background-size: cover;

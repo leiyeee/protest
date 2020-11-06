@@ -10,7 +10,7 @@ var displayword = "BLACK LIVES MATTER",
     startingPoints;
 
 function preload() {
-    font = loadFont("https://danielmarostica.github.io/static/media/Montserrat-Regular.ee653992.ttf");
+    font = loadFont("https://leiyeee.github.io/protest/font/LEMONMILK-Bold.otf");
 };
 
 function setup() {

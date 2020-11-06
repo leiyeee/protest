@@ -5,11 +5,6 @@
     --font: 'Roboto', sans-serif;
 }
 
-@font-face {
-   font-family: P5font;
-   src: url(../assets/LEMONMILK-Bold.otf);
-}
-
 body {
     background-color: var(--bkColor) !important;
 }

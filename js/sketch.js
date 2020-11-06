@@ -41,14 +41,14 @@ function setup() {
 
 function draw() {
 
-    background(0, 0, 0, 10);
-    stroke(100);
+    background(0, 0, 0, 5);
+    stroke(150);
     strokeWeight(1);
 
     if (pmouseX !== mouseX || mouseY !== mouseY) {
         stroke(255);
         strokeWeight(2);
-        background(0, 0, 0, 50);
+        background(0, 0, 0, 30);
 
         for (let i = 0; i < 5; i++) {
             let angle = random(TAU);
@@ -65,7 +65,7 @@ function draw() {
         push();
 
     noStroke();
-        fill(240, 153, 191, 30);
+        fill(240, 153, 191, 5);
         text(displayword, width / 2 - textWidth(displayword) / 2, height / 2 + 40);
 
         pop();

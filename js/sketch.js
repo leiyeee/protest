@@ -9,7 +9,7 @@ var displayword = "BLACK LIVES MATTER",
     startingPoints;
 
 function preload() {
-    font = loadFont("../assets/LEMONMILK-Bold.OTF");
+    font = loadFont("assets/LEMONMILK-Bold.OTF");
 };
 
 function setup() {

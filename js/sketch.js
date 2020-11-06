@@ -52,7 +52,7 @@ function draw() {
 
         for (let i = 0; i < 5; i++) {
             let angle = random(TAU);
-            let magnitude = randomGaussian() * ((5 - 1) ** 0.5 * 3);
+            let magnitude = randomGaussian() * ((5 - 1) * 0.5 * 3);
             let newPoint = {
                 "x": mouseX + magnitude * cos(angle),
                 "y": mouseY + magnitude * sin(angle),
@@ -61,6 +61,14 @@ function draw() {
             points[points.length] = newPoint;
             startingPoints[startingPoints.length] = newPoint;
         };
+
+        push();
+
+    noStroke();
+        fill(240, 153, 191, 30);
+        text(displayword, width / 2 - textWidth(displayword) / 2, height / 2 + 40);
+
+        pop();
 
     }
 

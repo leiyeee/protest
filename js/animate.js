@@ -9,5 +9,5 @@ function nav(number) {
 AOS.init({
     offset: 100,
     easing: 'ease-in-quart',
-    duration: 800,
+    duration: 1000,
 });

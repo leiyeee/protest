@@ -8,7 +8,7 @@ var displayword = "BLACK LIVES MATTER",
     points = [],
     startingPoints;
 
-function fontRead(){
+function fontRead() {
     fontReady = true;
 };
 
@@ -20,25 +20,27 @@ function setup() {
     var myCanvas = createCanvas(windowWidth, windowHeight);
     myCanvas.parent("p5");
 
-    textFont(font);
-    textSize(100);
+    if (fontReady) {
+        textFont(font);
+        textSize(100);
 
-    fill(255);
+        fill(255);
 
-    noiseDetail(10, falloff);
-    randomSeed(seed);
-    noiseSeed(seed);
+        noiseDetail(10, falloff);
+        randomSeed(seed);
+        noiseSeed(seed);
 
-    startingPoints = font.textToPoints(displayword, width / 2 - textWidth(displayword) / 2, height / 2 + 40, 100, {
-        "sampleFactor": density
-    });
+        startingPoints = font.textToPoints(displayword, width / 2 - textWidth(displayword) / 2, height / 2 + 40, 100, {
+            "sampleFactor": density
+        });
 
-    points = [];
+        points = [];
 
-    for (let p = 0; p < startingPoints.length; p++) {
-        points[p] = startingPoints[p];
-        points[p].zOffset = random();
-    }
+        for (let p = 0; p < startingPoints.length; p++) {
+            points[p] = startingPoints[p];
+            points[p].zOffset = random();
+        }
+    };
 }
 
 function draw() {

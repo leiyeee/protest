@@ -10,29 +10,33 @@ var displayword = "BLACK LIVES MATTER",
     startingPoints,
     fontReady = false;
 
+function preload() {
+    font = loadFont("https://danielmarostica.github.io/static/media/Montserrat-Regular.ee653992.ttf");
+};
+
 function setup() {
     var myCanvas = createCanvas(windowWidth, windowHeight);
     myCanvas.parent("p5");
-    
-     textFont("P5font");
-        textSize(100);
 
-        fill(255);
+    textFont("P5font");
+    textSize(100);
 
-        noiseDetail(10, falloff);
-        randomSeed(seed);
-        noiseSeed(seed);
+    fill(255);
 
-        startingPoints = font.textToPoints(displayword, width / 2 - textWidth(displayword) / 2, height / 2 + 40, 100, {
-            "sampleFactor": density
-        });
+    noiseDetail(10, falloff);
+    randomSeed(seed);
+    noiseSeed(seed);
 
-        points = [];
+    startingPoints = font.textToPoints(displayword, width / 2 - textWidth(displayword) / 2, height / 2 + 40, 100, {
+        "sampleFactor": density
+    });
 
-        for (let p = 0; p < startingPoints.length; p++) {
-            points[p] = startingPoints[p];
-            points[p].zOffset = random();
-        }
+    points = [];
+
+    for (let p = 0; p < startingPoints.length; p++) {
+        points[p] = startingPoints[p];
+        points[p].zOffset = random();
+    };
 
 }
 

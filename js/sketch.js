@@ -7,8 +7,7 @@ var displayword = "BLACK LIVES MATTER",
     font,
     table,
     points = [],
-    startingPoints,
-    fontReady = false;
+    startingPoints;
 
 function preload() {
     font = loadFont("https://danielmarostica.github.io/static/media/Montserrat-Regular.ee653992.ttf");
@@ -18,7 +17,7 @@ function setup() {
     var myCanvas = createCanvas(windowWidth, windowHeight);
     myCanvas.parent("p5");
 
-    textFont("P5font");
+    textFont(font);
     textSize(100);
 
     fill(255);

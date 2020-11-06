@@ -8,19 +8,15 @@ var displayword = "BLACK LIVES MATTER",
     points = [],
     startingPoints;
 
-function fontRead() {
-    fontReady = true;
-};
 
 function preload() {
-    font = loadFont("assets/LEMONMILK-Bold.OTF", fontRead);
+    font = loadFont("assets/LEMONMILK-Bold.OTF");
 };
 
 function setup() {
     var myCanvas = createCanvas(windowWidth, windowHeight);
     myCanvas.parent("p5");
 
-    if (fontReady) {
         textFont(font);
         textSize(100);
 
@@ -40,12 +36,11 @@ function setup() {
             points[p] = startingPoints[p];
             points[p].zOffset = random();
         }
-    };
+
 }
 
 function draw() {
 
-    if (fontReady) {
 
         background(0, 0, 0, 10);
         stroke(100);
@@ -81,7 +76,6 @@ function draw() {
             p.y = newPY;
         }
 
-    };
     //
     //    if (frameCount % 60 == 0) {
     //        for (let i = 0; i < 5; i++) {

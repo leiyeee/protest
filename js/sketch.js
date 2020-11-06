@@ -5,15 +5,18 @@ var displayword = "BLACK LIVES MATTER",
     speed = 0.5,
     seed,
     font,
+    table,
     points = [],
     startingPoints;
 
 
 function preload() {
+    table=loadTable("data/protest_log.csv")
     font = loadFont("assets/LEMONMILK-Bold.OTF");
 };
 
 function setup() {
+    console.log(table)
     var myCanvas = createCanvas(windowWidth, windowHeight);
     myCanvas.parent("p5");
 

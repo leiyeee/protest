@@ -8,14 +8,18 @@ var displayword = "BLACK LIVES MATTER",
     points = [],
     startingPoints;
 
+function fontRead(){
+    fontReady = true;
+};
+
 function preload() {
-    font = loadFont("assets/LEMONMILK-Bold.OTF");
+    font = loadFont("assets/LEMONMILK-Bold.OTF", fontRead);
 };
 
 function setup() {
     var myCanvas = createCanvas(windowWidth, windowHeight);
     myCanvas.parent("p5");
-    
+
     textFont(font);
     textSize(100);
 
@@ -39,54 +43,57 @@ function setup() {
 
 function draw() {
 
-    background(0, 0, 0, 10);
-    stroke(100);
-    strokeWeight(1);
+    if (fontReady) {
 
-    if (pmouseX !== mouseX || mouseY !== mouseY) {
-        stroke(255);
-        strokeWeight(2);
-        background(0, 0, 0, 50);
-        
-        for (let i = 0; i < 5; i++) {
-            let angle = random(TAU);
-            let magnitude = randomGaussian() * ((5 - 1) ** 0.5 * 3);
-            let newPoint = {
-                "x": mouseX + magnitude * cos(angle),
-                "y": mouseY + magnitude * sin(angle),
-                "zOffset": random()
+        background(0, 0, 0, 10);
+        stroke(100);
+        strokeWeight(1);
+
+        if (pmouseX !== mouseX || mouseY !== mouseY) {
+            stroke(255);
+            strokeWeight(2);
+            background(0, 0, 0, 50);
+
+            for (let i = 0; i < 5; i++) {
+                let angle = random(TAU);
+                let magnitude = randomGaussian() * ((5 - 1) ** 0.5 * 3);
+                let newPoint = {
+                    "x": mouseX + magnitude * cos(angle),
+                    "y": mouseY + magnitude * sin(angle),
+                    "zOffset": random()
+                };
+                points[points.length] = newPoint;
+                startingPoints[startingPoints.length] = newPoint;
             };
-            points[points.length] = newPoint;
-            startingPoints[startingPoints.length] = newPoint;
-        };
-        
-    }
 
-    for (let pt = 0; pt < points.length; pt++) {
-        let p = points[pt];
-        let noiseX = p.x * fractalization;
-        let noiseY = p.y * fractalization;
-        let newPX = p.x + map(noise(noiseX, noiseY, 0), 0, 1, -speed, speed);
-        let newPY = p.y + map(noise(noiseX, noiseY, 255), 0, 1, -speed, speed);
-        line(p.x, p.y, newPX, newPY);
-        p.x = newPX;
-        p.y = newPY;
-    }
+        }
 
-//
-//    if (frameCount % 60 == 0) {
-//        for (let i = 0; i < 5; i++) {
-//            let angle = random(TAU);
-//            let magnitude = randomGaussian() * ((5 - 1) ** 0.5 * 3);
-//            let newPoint = {
-//                "x": mouseX + magnitude * cos(angle),
-//                "y": mouseY + magnitude * sin(angle),
-//                "zOffset": random()
-//            };
-//            points[points.length] = newPoint;
-//            startingPoints[startingPoints.length] = newPoint;
-//        };
-//    };
+        for (let pt = 0; pt < points.length; pt++) {
+            let p = points[pt];
+            let noiseX = p.x * fractalization;
+            let noiseY = p.y * fractalization;
+            let newPX = p.x + map(noise(noiseX, noiseY, 0), 0, 1, -speed, speed);
+            let newPY = p.y + map(noise(noiseX, noiseY, 255), 0, 1, -speed, speed);
+            line(p.x, p.y, newPX, newPY);
+            p.x = newPX;
+            p.y = newPY;
+        }
+
+    };
+    //
+    //    if (frameCount % 60 == 0) {
+    //        for (let i = 0; i < 5; i++) {
+    //            let angle = random(TAU);
+    //            let magnitude = randomGaussian() * ((5 - 1) ** 0.5 * 3);
+    //            let newPoint = {
+    //                "x": mouseX + magnitude * cos(angle),
+    //                "y": mouseY + magnitude * sin(angle),
+    //                "zOffset": random()
+    //            };
+    //            points[points.length] = newPoint;
+    //            startingPoints[startingPoints.length] = newPoint;
+    //        };
+    //    };
 
 
 }

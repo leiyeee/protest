@@ -137,7 +137,7 @@ canvas {
 }
 
 .nodes:hover {
-    fill: white;
+    fill: white !important;
     color: white;
     stroke-width: 3px;
     stroke: white;

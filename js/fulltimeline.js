@@ -66,7 +66,7 @@ function fulltimeline() { // hi this is lucy
             .force("charge", d3.forceManyBody().strength(0.8))
             .force("collide", d3.forceCollide().strength(1)
                 .radius(function (d) {
-                    return violenceScale(d.violence_policeorstate) + 3;
+                    return violenceScale(d.violence_policeorstate) + 1;
                 })
                 .iterations(2))
 

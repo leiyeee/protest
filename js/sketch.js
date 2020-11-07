@@ -41,7 +41,7 @@ function setup() {
 
 function draw() {
 
-    background(0, 0, 0, 5);
+    background(0, 0, 0, 20);
     stroke(150);
     strokeWeight(1);
 
@@ -64,7 +64,7 @@ function draw() {
 
         push();
 
-    noStroke();
+        noStroke();
         fill(240, 153, 191, 5);
         text(displayword, width / 2 - textWidth(displayword) / 2, height / 2 + 40);
 
@@ -82,21 +82,6 @@ function draw() {
         p.x = newPX;
         p.y = newPY;
     }
-
-    //
-    //    if (frameCount % 60 == 0) {
-    //        for (let i = 0; i < 5; i++) {
-    //            let angle = random(TAU);
-    //            let magnitude = randomGaussian() * ((5 - 1) ** 0.5 * 3);
-    //            let newPoint = {
-    //                "x": mouseX + magnitude * cos(angle),
-    //                "y": mouseY + magnitude * sin(angle),
-    //                "zOffset": random()
-    //            };
-    //            points[points.length] = newPoint;
-    //            startingPoints[startingPoints.length] = newPoint;
-    //        };
-    //    };
 
 
 }

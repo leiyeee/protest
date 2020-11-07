@@ -1,3 +1,19 @@
+var at = ["NA", "Riot or Brawl", "Assassination", "Suicide Attack", "Kidnap/Hostage", "Execution", "Other Personal Attack", "Other Property Attack", "Border Incident", "Siege/Blockade", "Other Type of Attack", "Attempt Assassination", "Attempt Suicide Attack", "Attempt Kidnap/Hostage", "Attempt Oth Personal Attack", "Attempt Oth Property Attack", "Conspiracy Assassination", "Conspiracy Suicide Attack", "Conspiracy Kidnap/Hostage", "Conspiracy Oth Personal Attack", "Conspiracy Oth Property Attack", "Other Attempt", "Other Conspiracy", "Threat"];
+
+var ep = ["NA", "Verbal or Written Expression", "Symbolic Act", "Forming an Association", "Mass Demonstration or Strike"];
+
+var init_type = ["NA", "Non Gov Initiator", "Gov Initiator", "Suspected Gov Initiator", "Quasi Gov Initiator", "Non-human Stimulus"];
+
+var ngov = ["NA", "Social Group Member", "Political Group Member", "Union Member", "Member of Buss Assoc", "Nondescript Individual", "Worker", "Farmer/peasant", "Woman", "Child", "Youth", "Elderly", "Disabled", "GLBT", "Refugee", "Student", "Educator", "Intellectual", "Dissident", "Voter", "Pol Candidate", "Societal Leader", "Local Leader", "Former Gov Off", "Civic Group Member", "Religious Person", "Humanitarian Worker", "Healthcare Worker", "Security Official", "Soldier", "Peacekeeper", "Paramilitary Member", "Guerrilla Group Member", "Criminal", "Prisoner", "Journalist", "Business Person", "Gov Official", "Other", "Unspecified", "Landlord", "Immigrant"];
+
+var gov = ["NA", "Fire/rescue Official", "Police Officer", "Soldier", "Secret Police Offcial", "Intelligence Agent", "Cabinet Member", "Bureaucrat", "Election Official", "General Officer", "Chief Executive", "Royalty", "Clerical Leader", "Dictator", "Junta Member", "Colonial Governor", "Judge", "Judicial Court", "Legislator", "Legislature", "Government (Corporate)", "Public Media Org", "Gov Contractor", "International Org", "Oth Gov Entity"];
+
+var tar = ["No Target", "Human", "Property", "Geo Pol Entity", "Unspecified Target"];
+
+var vic = ["NA", "No Known Effects","General Effects","Constrained","Arrested","Dispersed","Surrendered/Captured","Exiled","Attacked","Kidnapped","Injured","Raped","Killed","Some Other Effect"];
+
+var weapon = ["NA","No Weapon Used","Fake weapon Used","Body Parts","Animal","Vehicles","Computer","Blunt Instrument","Tear gas, Mace, etc.","Knives/sharp Instrument","IED","Letter Bomb","Fire","Non-lethal Projectiles","Small Arms","Light Weapon","Incendiary Device","Land Mine","Explosives, Grenade","Car Bomb","Tanks/armored Vehicles","Field Artillery","Missile/rocket","Aircraft Munitions","Naval Power","Biochemical Weapons","Unspecified","Other weapon"];
+
 function exportToCsv(filename, rows) {
     var processRow = function (row) {
         var finalVal = '';
@@ -41,47 +57,32 @@ function exportToCsv(filename, rows) {
     }
 }
 
-d3.csv("/data/ssp.csv").then(function (data) {
+d3.csv("/data/ssp_simplified.csv").then(function (data) {
 
-    var ddd = [["initiator", "dsf"]];
+    var ddd = [["initiator_type", "dsf"]];
+
+    console.log(data[4].atk)
+
     data.forEach(function (d) {
-        let initArray = [];
-        if (d.INI_IGRP1 !== "." && d.INI_IGRP1 !== "") {
-            initArray.push(d.INI_IGRP1);
-        }
-        if (d.TAR_IGRP1 !== "." && d.TAR_IGRP1 !== "") {
-            initArray.push(d.TAR_IGRP1);
-        }
-        if (d.VIC_IGRP1 !== "." && d.VIC_IGRP1 !== "") {
-            initArray.push(d.VIC_IGRP1);
-        }
-        if (d.INI_SGRP1 !== "." && d.INI_SGRP1 !== "") {
-            initArray.push(d.INI_SGRP1);
-        }
-        if (d.TAR_SGRP1 !== "." && d.TAR_SGRP1 !== "") {
-            initArray.push(d.TAR_SGRP1);
-        }
-        if (d.VIC_SGRP1 !== "." && d.VIC_SGRP1 !== "") {
-            initArray.push(d.VIC_SGRP1);
-        }
-        if (d.INI_PGRP1 !== "." && d.INI_PGRP1 !== "") {
-            initArray.push(d.INI_PGRP1);
-        }
-        if (d.TAR_PGRP1 !== "." && d.TAR_PGRP1 !== "") {
-            initArray.push(d.TAR_PGRP1);
-        }
-        if (d.VIC_PGRP1 !== "." && d.VIC_PGRP1 !== "") {
-            initArray.push(d.VIC_PGRP1);
-        }
+        
+if(d.victim_effect == ""){
+    d.expp = "unknown";
+} else {
+    d.expp = vic[d.victim_effect];
+}
+        
+        if(d.weapon == ""){
+    d.expp = "unknown";
+} else {
+    d.exppp = weapon[d.weapon];
+}
 
-        if (initArray.length !== 0) {
-            d.initiator = initArray.join(", ");
-        } else {
-            d.initiator = "unknown";
-        };
+        ddd.push([d.expp, d.exppp]);
 
-        ddd.push([d.initiator, "placeholder"]);
     });
+
+
+    console.log(ddd);
 
     exportToCsv('export.csv', ddd);
 

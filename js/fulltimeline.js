@@ -6,8 +6,13 @@ function fulltimeline() { // hi this is lucy
 
     var parseTime = d3.timeParse("%Y%m%d");
 
+    var tooltip = d3.select("#fulltimeline")
+        .append("div")
+        .attr("id", "tooltip")
+        .style("opacity", 0);
+
     var svg = d3.select("#fulltimeline")
-        .attr("class", "timline")
+        .attr("class", "fulltimeline")
         .append("svg")
         .attr("width", width)
         .attr("height", height)
@@ -30,11 +35,9 @@ function fulltimeline() { // hi this is lucy
             }
         });
 
-        console.log(countries);
-
         data = data.filter(function (d) {
             return d.date_text.includes("unknown") == false &&
-                d.country_name == "United States" &&
+                d.country_name == "China" &&
                 d.initiator.includes("unknown") == false;
         })
 
@@ -84,7 +87,7 @@ function fulltimeline() { // hi this is lucy
             .enter()
             .append("circle")
             .attr("class", function (d) {
-                return d.eventid;
+                return "nodes " + d.eventid;
             })
             .attr("r", function (d) {
                 return violenceScale(d.violence_policeorstate);
@@ -125,10 +128,36 @@ function fulltimeline() { // hi this is lucy
                     })
             });
 
-        node.on("mouseover", function (event, d) {
-            console.log(d.location);
-            console.log(d);
-        })
+        node
+            .on("mouseover", function (event, d) {
+
+                console.log(d);
+
+                let tip = "<svg height='10' width='20'><polygon class='tip' points='10,0,20,10,0,10'/></svg>";
+
+                tooltip.html("<div class='tipp'><div class='tip'>" + tip + "<p class='tooltiptext'>" + d.date_text + " (" + d.day_span + " days) <br><b>" + d.action + "</b> by " + d.initiator + " (" + d.initiator_type + ")<br>" + d.location + "</div></div>");
+
+                tooltip
+                    .style("top", (+this.attributes.cy.value + 30) + "px")
+                    .style("left", (+this.attributes.cx.value - 100) + "px")
+                    .transition()
+                    .style("opacity", 1);
+
+            })
+            .on("mouseout", function (event, d) {
+                tooltip.transition().style("opacity", 0).transition().style("top", 0 + "px")
+            })
+            .on("click", function (d) {
+                let button = document.createElement("button");
+                button.className = "policy bx--btn--primary btnn";
+                button.innerHTML = d.intervention;
+
+                document.getElementById("selection").appendChild(button);
+                document.getElementById("newPolicy").style.display = "block";
+                document.getElementById("pBuild").innerHTML = "Build";
+
+                d3.select(this).transition().style("fill", "white");
+            })
 
     });
 

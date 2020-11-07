@@ -16,7 +16,7 @@ function fulltimeline() { // hi this is lucy
         .style("z-index", 0)
 
 
-    d3.csv("../data/ssp_simplified.csv").then(function (data) {
+    d3.csv("data/ssp_simplified.csv").then(function (data) {
 
         let actions = [],
             countries = [];

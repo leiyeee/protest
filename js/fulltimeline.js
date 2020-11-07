@@ -134,21 +134,19 @@ function fulltimeline() { // hi this is lucy
 
 };
 
-fulltimeline();
-noLoop();
-//$(window).scroll(function () {
-//    showfulltimeline();
-//});
-//
-//function showfulltimeline() {
-//    var hT = $('#fulltimeline').offset().top,
-//        hH = $('#fulltimeline').outerHeight(),
-//        wH = $(window).height(),
-//        wS = $(this).scrollTop();
-//    if (wS > (hT + hH - wH)) {
-//        showfulltimeline = noop;
-//        //console.log("triggered full timeline");
-//        noLoop();
-//        fulltimeline();
-//    }
-//};
+$(window).scroll(function () {
+    showfulltimeline();
+});
+
+function showfulltimeline() {
+    var hT = $('#fulltimeline').offset().top,
+        hH = $('#fulltimeline').outerHeight(),
+        wH = $(window).height(),
+        wS = $(this).scrollTop();
+    if (wS > (hT + hH - wH)) {
+        showfulltimeline = noop;
+        //console.log("triggered full timeline");
+        noLoop();
+        fulltimeline();
+    }
+};

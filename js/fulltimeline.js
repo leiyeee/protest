@@ -18,12 +18,29 @@ function fulltimeline() { // hi this is lucy
 
     d3.csv("../data/ssp_simplified.csv").then(function (data) {
 
+        let actions = [],
+            countries = [];
+
+        data.forEach(function (d) {
+            if (actions.includes(d.action) == false) {
+                actions.push(d.action);
+            }
+            if (countries.includes(d.country_name) == false) {
+                countries.push(d.country_name);
+            }
+        });
+
+        console.log(countries);
+
         data = data.filter(function (d) {
             return d.date_text.includes("unknown") == false &&
                 d.country_name == "United States" &&
                 d.initiator.includes("unknown") == false;
         })
-        //console.log(data.length)
+
+        var actionScale = d3.scaleOrdinal()
+            .domain(actions)
+            .range(d3.schemeSet3);
 
         var timeScale = d3.scaleTime()
             .domain(d3.extent(data, function (d) {
@@ -35,7 +52,31 @@ function fulltimeline() { // hi this is lucy
             .domain(d3.extent(data, function (d) {
                 return d.violence_policeorstate;
             }))
-            .range([1, 5]);
+            .range([2, 7]);
+
+        var xaxistext = svg.append("text")
+            .attr("class", "xaxistext")
+            .attr("x", width - margin / 2)
+            .attr("y", height - margin / 2)
+            .text("Timeline")
+            .style("text-anchor", "end")
+            .style("fill", "#bcbcbc");
+
+        var xaxis = svg.append("g")
+            .attr("class", "yipxaxis")
+            .attr("transform", "translate(0," + height * 0.8 + ")")
+            .call(d3.axisBottom(timeScale))
+            .style("opacity", 0)
+            .transition()
+            .delay(3000)
+            .style("opacity", 1);
+
+        xaxis.transition().selectAll(".yipxaxis line")
+            .style("stroke-width", 0.1)
+            .style("stroke", "#bcbcbc")
+            .style("stroke-dasharray", "1,5")
+            .attr("y1", -5)
+            .attr("y2", -height * 0.3);
 
         var node = svg.append("g")
             .selectAll("circle")
@@ -50,7 +91,9 @@ function fulltimeline() { // hi this is lucy
             })
             .attr("cx", width / 2)
             .attr("cy", height / 2)
-            .style("fill", "pink")
+            .style("fill", function (d) {
+                return actionScale(d.action);
+            })
 
         var simulation = d3.forceSimulation()
             .force("x",
@@ -83,6 +126,7 @@ function fulltimeline() { // hi this is lucy
             });
 
         node.on("mouseover", function (event, d) {
+            console.log(d.location);
             console.log(d);
         })
 
@@ -91,3 +135,20 @@ function fulltimeline() { // hi this is lucy
 };
 
 fulltimeline();
+noLoop();
+//$(window).scroll(function () {
+//    showfulltimeline();
+//});
+//
+//function showfulltimeline() {
+//    var hT = $('#fulltimeline').offset().top,
+//        hH = $('#fulltimeline').outerHeight(),
+//        wH = $(window).height(),
+//        wS = $(this).scrollTop();
+//    if (wS > (hT + hH - wH)) {
+//        showfulltimeline = noop;
+//        //console.log("triggered full timeline");
+//        noLoop();
+//        fulltimeline();
+//    }
+//};

@@ -37,7 +37,7 @@ function setup() {
         points[p].zOffset = random();
     };
 
-}
+};
 
 function draw() {
 
@@ -84,4 +84,4 @@ function draw() {
     }
 
 
-}
+};

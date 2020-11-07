@@ -96,3 +96,13 @@ canvas {
     background-size: cover;
 */
 }
+
+.yipxaxis path {
+    stroke: none;
+}
+
+.yipxaxis text {
+    font-family: var(--font);
+    font-size: 12px;
+    color: #bcbcbc;
+}

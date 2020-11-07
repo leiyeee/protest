@@ -1,0 +1,1 @@
+var pink = "#fcd2d3";

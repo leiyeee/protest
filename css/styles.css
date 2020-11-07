@@ -58,16 +58,19 @@ canvas {
     font-weight: 300;
     color: var(--gry);
     margin: 10px 30px;
-    font-size: 12px;
+    font-size: 14px;
+    letter-spacing: 2px;
 }
 
 .navig:hover {
     color: white;
     cursor: pointer;
 }
+
 .naviglabel {
     display: none;
 }
+
 .navig:hover > .naviglabel {
     display: inline;
 }
@@ -81,22 +84,15 @@ canvas {
     align-items: center;
 }
 
+#fulltimeline {
+    height: 80vh;
+    width: 100%;
+}
+
 #section1 {
     /*
     background: url("https://static.dezeen.com/uploads/2020/06/black-lives-matter-illustrations-roundup-hero-1.jpg");
     background-repeat: no-repeat;
     background-size: cover;
 */
-}
-
-#section2 {
-    background: url("https://static.dezeen.com/uploads/2020/06/black-lives-matter-illustrations-roundup-hero-1.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-#section3 {
-    background: url("https://www.fifehouse.org/wp-content/uploads/blm_header.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
 }

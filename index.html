@@ -10,7 +10,7 @@
     <!--bootstrap-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <!--D3-->
-    <script src="https://d3js.org/d3.v5.js"></script>
+    <script src="https://d3js.org/d3.v6.js"></script>
     <!--fontawesome-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!--P5-->
@@ -27,28 +27,28 @@
 <body style="color: var(--gry);">
     <div class="navigation" data-aos="fade-in">
         <div>
-            <div class="navig" onclick="nav(1);"><i class="fa fa-circle"></i> <span class="naviglabel">Cover</span></div>
+            <div class="navig" onclick="nav(0);"><i class="fa fa-circle"></i> <span class="naviglabel">Cover</span></div>
+            <div class="navig" onclick="nav(1);"><i class="fa fa-circle"></i> <span class="naviglabel">Prequel</span></div>
             <div class="navig" onclick="nav(2);"><i class="fa fa-circle"></i> <span class="naviglabel">Intro</span></div>
             <div class="navig" onclick="nav(3);"><i class="fa fa-circle"></i> <span class="naviglabel">Section3</span></div>
         </div>
     </div>
 
-    <section class="fullPage" id="section1">
+    <section class="fullPage" id="section0">
         <div id="p5"></div>
         <div class="introText" data-aos="fade-in">
             <h3 class="cursive">a short title</h3>
             <p class="shortText" data-aos="fade-in">This data visualization applauds at the counter-hegemonic voices raised throughout history, in support of the marginalized, silenced, under-represented minorities' journey towards social justice. </p>
         </div>
     </section>
+    <section class="fullPage fullPagePadding" id="section1">
+        <div id="fulltimeline"></div>
+    </section>
     <section class="fullPage fullPagePadding" id="section2">
         <p>This is section 2</p>
     </section>
     <section class="fullPage fullPagePadding" id="section3">
         <p>This is section 3</p>
-    </section>
-    
-    <section class="fullPage fullPagePadding" id="section4">
-        <div id="fulltimeline"></div>
     </section>
 
     <section class="footer">
@@ -62,7 +62,9 @@
     <!--D3-->
     <script src="https://d3js.org/d3.v6.min.js"></script>
     <!--vanilla JS-->
-    <script src="js/sketch.js"></script>
+    <script src="js/main.js"></script>
+<!--    <script src="js/sketch.js"></script>-->
+    <script src="js/fulltimeline.js"></script>
     <script src="js/aos.js"></script>
     <script src="js/animate.js"></script>
 </body></html>

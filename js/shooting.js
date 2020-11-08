@@ -27,8 +27,7 @@ function shooting() { // hi this is lucy
             day_count = 0;
 
         data.forEach(function (d) {
-
-
+            
             if (race.includes(d.race) == false) {
                 race.push(d.race);
             }
@@ -43,20 +42,43 @@ function shooting() { // hi this is lucy
             d.day_count = day_count;
             d.date = parseTime(d.date);
 
-        })
-
-        console.log(race);
+        });
 
         let xScale = d3.scaleTime()
             .domain(d3.extent(data, function (d) {
                 return d.date;
             }))
             .range([margin, width - margin]);
-        
-        let raceScale = d3.scaleOrdinal()
-        .domain["A", "W", "H", "B", "O", "", "N"]
-        .range["yellow","pink","brown",]
 
+        let raceScale = d3.scaleOrdinal()
+            .domain(["A", "W", "H", "B", "O", "", "N"])
+            .range(["#eddaa1", "#eddcd5", "#963914", "#54001c", "#91919", "#919191", "#919191"]);
+
+        //        svg.append("rect")
+        //            .attr("x", 0)
+        //            .attr("y", height / 2 - 100)
+        //            .attr("width", width)
+        //            .attr("height", 120)
+        //            .style("fill", "gray")
+        //            .style("opacity", 1)
+
+        //        var xaxistext = svg.append("text")
+        //            .attr("class", "xaxistext")
+        //            .attr("x", width - margin / 2)
+        //            .attr("y", height - margin / 2)
+        //            .text("Timeline")
+        //            .style("text-anchor", "end")
+        //            .style("fill", "#bcbcbc");
+
+
+        var xaxis = svg.append("g")
+            .attr("class", "yipxaxis")
+            .attr("transform", "translate(0," + (height / 2 + 10) + ")")
+            .call(d3.axisBottom(xScale)
+                .ticks(50, "%Y-%m-%d"))
+            .style("opacity", 0)
+            .transition()
+            .style("opacity", 1);
 
         let fatal = svg.append("g")
             .selectAll(".shootingscroll")
@@ -72,7 +94,7 @@ function shooting() { // hi this is lucy
             })
             .attr("r", 3)
             .style("fill", function (d) {
-                return "red";
+                return raceScale(d.race);
             })
 
     });

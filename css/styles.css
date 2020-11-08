@@ -84,7 +84,8 @@ canvas {
     align-items: center;
 }
 
-#fulltimeline {
+#fulltimeline,
+#shooting {
     height: 80vh;
     width: 100%;
 }
@@ -134,6 +135,11 @@ canvas {
     top: -20px;
     margin-bottom: -20px;
     fill: #393939;
+}
+
+.horizontalscroll {
+    overflow-x: scroll;
+    overflow-y: hidden;
 }
 
 .nodes:hover {

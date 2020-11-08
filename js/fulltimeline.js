@@ -165,6 +165,7 @@ function fulltimeline() { // hi this is lucy
 
 $(window).scroll(function () {
     showfulltimeline();
+    shooting();
 });
 
 function showfulltimeline() {
@@ -174,8 +175,18 @@ function showfulltimeline() {
         wS = $(this).scrollTop();
     if (wS > (hT + hH - wH)) {
         showfulltimeline = noop;
-        //console.log("triggered full timeline");
-        noLoop();
         fulltimeline();
+    }
+};
+
+function shooting() {
+    var hT = $('#shooting').offset().top,
+        hH = $('#shooting').outerHeight(),
+        wH = $(window).height(),
+        wS = $(this).scrollTop();
+    if (wS > (hT + hH - wH)) {
+        shooting = noop;
+        noLoop();
+        shooting();
     }
 };

@@ -2,7 +2,7 @@ function fulltimeline() { // hi this is lucy
 
     var width = document.getElementById("fulltimeline").offsetWidth,
         height = document.getElementById("fulltimeline").offsetHeight,
-        margin = 50;
+        margin = 10;
 
     var parseTime = d3.timeParse("%Y%m%d");
 

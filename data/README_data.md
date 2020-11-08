@@ -19,3 +19,13 @@ The SSP's (Project's Societal Stability Protocol) aim is to generate event data 
 `note: this data was last updated on Nov.6 (up to election week)`
 
 [Source: Cline Center for Deomcracy](http://www.clinecenter.illinois.edu/publication/white/speed/#Overview)
+
+## ssp_simplified.csv
+
+Cleaned up data of ssp.
+
+## police_fatal
+
+The Washington Post's database contains records of every fatal shooting in the United States by a police officer in the line of duty since Jan. 1, 2015.
+
+[Source: Washington Post](https://github.com/washingtonpost/data-police-shootings)

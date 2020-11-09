@@ -99,5 +99,3 @@ function shooting() { // hi this is lucy
 
     });
 };
-
-shooting();

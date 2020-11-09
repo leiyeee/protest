@@ -162,19 +162,3 @@ function fulltimeline() { // hi this is lucy
     });
 
 };
-
-$(window).scroll(function () {
-    showfulltimeline();
-});
-
-function showfulltimeline() {
-    var hT = $('#fulltimeline').offset().top,
-        hH = $('#fulltimeline').outerHeight(),
-        wH = $(window).height(),
-        wS = $(this).scrollTop();
-    if (wS > (hT + hH - wH)) {
-        showfulltimeline = noop;
-        noLoop();
-        fulltimeline();
-    }
-};

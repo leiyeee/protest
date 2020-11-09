@@ -31,8 +31,9 @@ function geo() {
 
         d3.json("data/us-states.geojson").then(function (swiss) {
 
+            console.log(data.length);
             var event_type = [];
-            console.log(data[0]);
+            //            data = data.slice(0, 5000)
 
             data.forEach(function (d) {
                 if (event_type.includes(d.SUB_EVENT_TYPE) == false) {
@@ -49,17 +50,17 @@ function geo() {
                 .enter()
                 .append("g");
 
-            svg.selectAll("circle")
+            var node = svg.selectAll("circle")
                 .data(data)
                 .enter()
                 .append("circle")
                 .attr("r", function (d) {
                     if (d.SUB_EVENT_TYPE == "Excessive force against protesters" || d.SUB_EVENT_TYPE == "Disrupted weapons use" || d.SUB_EVENT_TYPE == "Armed clash") {
-                        return 5;
+                        return 3;
                     } else if (d.SUB_EVENT_TYPE == "Peaceful protest" || d.SUB_EVENT_TYPE == "Protest with intervention" || d.SUB_EVENT_TYPE == "Other" || d.SUB_EVENT_TYPE == "Change to group/activity") {
                         return 1;
                     } else {
-                        return 3;
+                        return 2;
                     }
                 })
                 .attr("cx", function (d) {
@@ -69,8 +70,45 @@ function geo() {
                     return projection([+d.LONGITUDE, +d.LATITUDE])[1];
                 })
                 .style("fill", function (d) {
-                    return eventtypeScale(d.SUB_EVENT_TYPE);
+                    return eventtypeScale(d.SUB_EVENT_TYPE)
                 });
+
+            //            var simulation = d3.forceSimulation()
+            //                .force("x",
+            //                    d3.forceX()
+            //                    .strength(0.5)
+            //                    .x(function (d) {
+            //                        return projection([+d.LONGITUDE, +d.LATITUDE])[0];
+            //                    }))
+            //                .force("y",
+            //                    d3.forceY()
+            //                    .strength(0.5)
+            //                    .y(function (d) {
+            //                        return projection([+d.LONGITUDE, +d.LATITUDE])[1];
+            //                    }))
+            //                .force("collide", d3.forceCollide().strength(1)
+            //                    .radius(function (d) {
+            //                        if (d.SUB_EVENT_TYPE == "Excessive force against protesters" || d.SUB_EVENT_TYPE == "Disrupted weapons use" || d.SUB_EVENT_TYPE == "Armed clash") {
+            //                            return 4.5;
+            //                        } else if (d.SUB_EVENT_TYPE == "Peaceful protest" || d.SUB_EVENT_TYPE == "Protest with intervention" || d.SUB_EVENT_TYPE == "Other" || d.SUB_EVENT_TYPE == "Change to group/activity") {
+            //                            return 1.5;
+            //                        } else {
+            //                            return 2.5;
+            //                        }
+            //                    })
+            //                    .iterations(1))
+            //
+            //            simulation
+            //                .nodes(data)
+            //                .on("tick", function (d) {
+            //                    node
+            //                        .attr("cx", function (d) {
+            //                            return d.x;
+            //                        })
+            //                        .attr("cy", function (d) {
+            //                            return d.y;
+            //                        })
+            //                });
 
             var path = d3.geoPath().projection(projection);
 
@@ -82,6 +120,4 @@ function geo() {
 
 
     });
-}
-
-geo();
+};

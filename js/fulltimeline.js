@@ -53,7 +53,7 @@ function fulltimeline() { // hi this is lucy
             .domain(d3.extent(data, function (d) {
                 return parseTime(+d.date);
             }))
-            .range([margin, width - margin * 4]);
+            .range([margin, width - margin]);
 
         var violenceScale = d3.scaleLinear()
             .domain(d3.extent(data, function (d) {

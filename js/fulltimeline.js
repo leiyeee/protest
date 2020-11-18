@@ -35,27 +35,31 @@ function fulltimeline() { // hi this is lucy
             }
         });
 
-        data = data.filter(function (d) {
-            return d.date_text.includes("unknown") == false &&
-                d.country_name == "China" &&
-                d.initiator.includes("unknown") == false;
-        })
+//        data = data.filter(function (d) {
+//            return d.date_text.includes("unknown") == false &&
+//                d.country_name == "China" &&
+//                d.initiator.includes("unknown") == false;
+//        })
 
         var actionScale = d3.scaleOrdinal()
             .domain(actions)
             .range(d3.schemeSet3);
 
+        console.log(d3.extent(data, function (d) {
+            return parseTime(+d.date);
+        }));
+
         var timeScale = d3.scaleTime()
             .domain(d3.extent(data, function (d) {
                 return parseTime(+d.date);
             }))
-            .range([margin, width - margin]);
+            .range([margin, width - margin * 4]);
 
         var violenceScale = d3.scaleLinear()
             .domain(d3.extent(data, function (d) {
                 return d.violence_policeorstate;
             }))
-            .range([2, 7]);
+            .range([1, 4]);
 
         var xaxistext = svg.append("text")
             .attr("class", "xaxistext")

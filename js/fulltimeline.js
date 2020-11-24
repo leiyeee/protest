@@ -34,20 +34,18 @@ function fulltimeline() { // hi this is lucy
                 countries.push(d.country_name);
             }
         });
+        
+        console.log(countries);
 
-//        data = data.filter(function (d) {
-//            return d.date_text.includes("unknown") == false &&
-//                d.country_name == "China" &&
-//                d.initiator.includes("unknown") == false;
-//        })
+        data = data.filter(function (d) {
+            return d.date_text.includes("unknown") == false &&
+                d.country_name == "China" &&
+                d.initiator.includes("unknown") == false;
+        })
 
         var actionScale = d3.scaleOrdinal()
             .domain(actions)
             .range(d3.schemeSet3);
-
-        console.log(d3.extent(data, function (d) {
-            return parseTime(+d.date);
-        }));
 
         var timeScale = d3.scaleTime()
             .domain(d3.extent(data, function (d) {
@@ -59,7 +57,7 @@ function fulltimeline() { // hi this is lucy
             .domain(d3.extent(data, function (d) {
                 return d.violence_policeorstate;
             }))
-            .range([1, 4]);
+            .range([3, 10]);
 
         var xaxistext = svg.append("text")
             .attr("class", "xaxistext")

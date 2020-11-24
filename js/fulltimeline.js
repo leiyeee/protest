@@ -35,11 +35,11 @@ function fulltimeline() { // hi this is lucy
             }
         });
 
-//        data = data.filter(function (d) {
-//            return d.date_text.includes("unknown") == false &&
-//                d.country_name == "China" &&
-//                d.initiator.includes("unknown") == false;
-//        })
+        data = data.filter(function (d) {
+            return d.date_text.includes("unknown") == false &&
+                d.country_name == "China" &&
+                d.initiator.includes("unknown") == false;
+        })
 
         var actionScale = d3.scaleOrdinal()
             .domain(actions)

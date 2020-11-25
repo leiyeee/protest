@@ -42,16 +42,19 @@
             <p class="shortText" data-aos="fade-in">This data visualization applauds at the counter-hegemonic voices raised throughout history, in support of the marginalized, silenced, under-represented minorities' journey towards social justice. </p>
         </div>
     </section>
+    
     <section class="fullPage fullPagePadding" id="section1" style="padding-right: 0;">
         <p>geo</p>
         <div id="geo"></div>
     </section>
+
     <section class="fullPage fullPagePadding" id="section2">
         <p>shooting</p>
         <div class="horizontalscroll">
             <div id="shooting"></div>
         </div>
     </section>
+
     <section class="fullPage fullPagePadding" id="section3">
         <div id="fulltimeline"></div>
         <form id="yipcountries" class="btn-group btn-group-toggle" style="display: flex; align-items: center; justify-content: center;" data-toggle="buttons">
@@ -64,10 +67,15 @@
         </form>
     </section>
 
+    <div style="display: flex;justify-content: center;flex-direction: column; align-items: center;">
+        <div class="button-wrappers" style="margin-bottom: 40px;">
+        </div>
+        <div id="radar-chart"></div>
+    </div>
+
     <section class="footer">
         <p>This is the footer section</p>
     </section>
-
 
     <!--boostrap & jquery-->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
@@ -84,5 +92,10 @@
     <script src="js/main.js"></script>
     <!-- put this at the bery bottom -->
 </body>
+
+<script src="libs/d3.min.js"></script>
+<script src="libs/underscore-min.js"></script>
+<script src="js/radar-chart.js"></script>
+<script src="index.js"></script>
 
 </html>

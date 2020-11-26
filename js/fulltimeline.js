@@ -34,7 +34,7 @@ function fulltimeline() { // hi this is lucy
                 countries.push(d.country_name);
             }
         });
-
+        
         console.log(countries);
 
         data = data.filter(function (d) {

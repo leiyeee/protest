@@ -36,7 +36,6 @@
             <div class="navig" onclick="nav(4);"><i class="fa fa-circle"></i> <span class="naviglabel">Section4</span></div>
             <div class="navig" onclick="nav(5);"><i class="fa fa-circle"></i> <span class="naviglabel">Section4</span></div>
             <div class="navig" onclick="nav(6);"><i class="fa fa-circle"></i> <span class="naviglabel">Radar-Chart</span></div>
-            <div class="navig" onclick="nav(3);"><i class="fa fa-circle"></i> <span class="naviglabel">Full Timeline</span></div>
         </div>
     </div>
 
@@ -47,6 +46,7 @@
             <p class="shortText" data-aos="fade-in">This data visualization applauds at the counter-hegemonic voices raised throughout history, in support of the marginalized, silenced, under-represented minorities' journey towards social justice. </p>
         </div>
     </section>
+
     <section class="fullPage fullPagePadding" id="section1">
         <p>This is the full timeline</p>
         <div class="col-4">
@@ -56,12 +56,6 @@
                 </video>
             </div>
         </div>
-
-    
-    <section class="fullPage fullPagePadding" id="section1" style="padding-right: 0;">
-        <p>geo</p>
-        <div id="geo"></div>
-
     </section>
 
     <section class="fullPage fullPagePadding" id="section2">
@@ -79,6 +73,7 @@
         </div>
 
     </section>
+
     <section class="fullPage fullPagePadding" id="section3">
         <p>shooting</p>
         <div class="horizontalscroll">
@@ -87,10 +82,6 @@
     </section>
 
     <section class="fullPage fullPagePadding" id="section4">
-        <p>This is the full timeline</p>
-
-
-    <section class="fullPage fullPagePadding" id="section3">
         <div id="fulltimeline"></div>
         <form id="yipcountries" class="btn-group btn-group-toggle" style="display: flex; align-items: center; justify-content: center;" data-toggle="buttons">
             <label class="btn btn-light active">
@@ -101,6 +92,7 @@
                 <input type="radio" name="countries" autocomplete="off" value="China">China</label>
         </form>
     </section>
+
     <section class="fullPage fullPagePadding" id="section5">
         <div class="row justify-content-center" style="display: flex; align-items: center; justify-content: center">
             <div class="col col-sm-2">
@@ -115,7 +107,6 @@
             </div>
 
         </div>
-
     </section>
 
     <section class="fullPage fullPagePadding" id="section6">
@@ -125,12 +116,14 @@
             <div id="radar-chart"></div>
         </div>
     </section>
+    <!--
 
-    <div style="display: flex;justify-content: center;flex-direction: column; align-items: center;">
-        <div class="button-wrappers" style="margin-bottom: 40px;">
+        <div style="display: flex;justify-content: center;flex-direction: column; align-items: center;">
+            <div class="button-wrappers" style="margin-bottom: 40px;">
+            </div>
+            <div id="radar-chart"></div>
         </div>
-        <div id="radar-chart"></div>
-    </div>
+-->
 
     <section class="footer">
         <p>This is the footer section</p>
@@ -157,15 +150,9 @@
     <script src="js/radar-chart.js"></script>
     <script src="js/index.js"></script>
     <script src="js/main.js"></script> <!-- put this at the bery bottom -->
-</body></html>
-
-    <script src="js/main.js"></script>
-    <!-- put this at the bery bottom -->
 </body>
 
 <script src="libs/d3.min.js"></script>
 <script src="libs/underscore-min.js"></script>
 <script src="js/radar-chart.js"></script>
-<script src="index.js"></script>
-
-</html>
+<script src="index.js"></script></html>

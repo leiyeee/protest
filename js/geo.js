@@ -9,8 +9,6 @@ function geo() {
         .attr("id", "tooltip")
         .style("opacity", 0);
 
-
-
     var svg = d3.select("#geo")
         .attr("class", "geo")
         .append("svg")
@@ -52,14 +50,14 @@ function geo() {
             let eventtypeScale = d3.scaleOrdinal()
                 .domain(event_type)
                 .range(["red", "pink", "white"]);
-
-            const zoom = d3.zoom()
-                .scaleExtent([1, 40])
-                .translateExtent([[0, 0], [width, height]])
-                .extent([[0, 0], [width, height]])
-                .on("zoom", zoomed);
-
-            svg.call(zoom);
+//
+//            const zoom = d3.zoom()
+//                .scaleExtent([1, 40])
+//                .translateExtent([[0, 0], [width, height]])
+//                .extent([[0, 0], [width, height]])
+//                .on("zoom", zoomed);
+//
+//            svg.call(zoom);
 
             var group = svg.selectAll("g")
                 .data(swiss.features)

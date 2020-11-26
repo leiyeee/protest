@@ -148,3 +148,17 @@ canvas {
     stroke-width: 3px;
     stroke: white;
 }
+
+/*videobutton*/
+#video {
+    margin-left: 15px;
+    margin-top: 10%;
+    margin-bottom: 15px;
+    height: 60vh !important;
+    border-radius: 25px;
+    background: var(--dark);
+}
+
+#myVideo {
+    z-index: 0;
+}

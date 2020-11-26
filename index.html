@@ -13,6 +13,7 @@
     <script src="https://d3js.org/d3.v6.js"></script>
     <script src="https://d3js.org/topojson.v1.min.js"></script>
     <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <!--fontawesome-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!--P5-->
@@ -32,6 +33,9 @@
             <div class="navig" onclick="nav(1);"><i class="fa fa-circle"></i> <span class="naviglabel">Prequel</span></div>
             <div class="navig" onclick="nav(2);"><i class="fa fa-circle"></i> <span class="naviglabel">Intro</span></div>
             <div class="navig" onclick="nav(3);"><i class="fa fa-circle"></i> <span class="naviglabel">Section3</span></div>
+            <div class="navig" onclick="nav(4);"><i class="fa fa-circle"></i> <span class="naviglabel">Section4</span></div>
+            <div class="navig" onclick="nav(5);"><i class="fa fa-circle"></i> <span class="naviglabel">Section4</span></div>
+            <div class="navig" onclick="nav(6);"><i class="fa fa-circle"></i> <span class="naviglabel">Radar-Chart</span></div>
         </div>
     </div>
 
@@ -42,19 +46,65 @@
             <p class="shortText" data-aos="fade-in">This data visualization applauds at the counter-hegemonic voices raised throughout history, in support of the marginalized, silenced, under-represented minorities' journey towards social justice. </p>
         </div>
     </section>
-    <section class="fullPage fullPagePadding" id="section1" style="padding-right: 0;">
-        <p>geo</p>
-        <div id="geo"></div>
+    <section class="fullPage fullPagePadding" id="section1">
+        <p>This is the full timeline</p>
+        <div class="col-4">
+            <div id="video" style="overflow: hidden;">
+                <video controls loop id="myVideo">
+                    <source src="assets/blm.mp4" type="video/mp4"> Your browser does not support HTML5 video.
+                </video>
+            </div>
+        </div>
+
     </section>
     <section class="fullPage fullPagePadding" id="section2">
+        <p>geo</p>
+        <div class="row row-cols-2 justify-content-center" style="padding-top: 50px;">
+            <div class="col-9" style="padding-left: 150px;">
+                <div id="geo"></div>
+            </div>
+            <div class="col-sm-2">
+                <div style="width:8%;height:0;padding-bottom:20%;position:relative;transform: rotate(180deg);"><iframe src="https://giphy.com/embed/M9aDX83pscxC6yTatD" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div>
+                <p>Click one point for more inromation</p>
+                <div id="info">
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <section class="fullPage fullPagePadding" id="section3">
         <p>shooting</p>
         <div class="horizontalscroll">
             <div id="shooting"></div>
         </div>
     </section>
-    <section class="fullPage fullPagePadding" id="section3">
+    <section class="fullPage fullPagePadding" id="section4">
         <p>This is the full timeline</p>
         <div id="fulltimeline"></div>
+    </section>
+    <section class="fullPage fullPagePadding" id="section5">
+        <div class="row justify-content-center" style="display: flex; align-items: center; justify-content: center">
+            <div class="col col-sm-2">
+
+                <p class="red">The Census Bureau report on income, poverty, and health insurance coverage in 2019 reveals impressive growth in median household income relative to 2018 across all racial and ethnic groups, but income gaps persist. While the Census cautions that the 2019 income estimates may be overstated due to a decline in response rates for the survey administered in March of this year, real median household income increased 10.6% among Asian households (from $88,774 to $98,174), 8.5% among Black households (from $42,447 to $46,073), 7.1% among Hispanic households (from $52,382 to $56,113), and 5.7% among non-Hispanic white households (from $71,922 to $76,057)</p>
+            </div>
+            <div class="col col-sm-4">
+                <div id="mybar1"></div>
+            </div>
+            <div class="col col-sm-4">
+                <div id="mybar2"></div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="fullPage fullPagePadding" id="section6">
+        <div style="display: flex;justify-content: center;flex-direction: column; align-items: center;">
+            <div class="button-wrappers" style="margin-bottom: 40px;">
+            </div>
+            <div id="radar-chart"></div>
+        </div>
     </section>
 
     <section class="footer">
@@ -70,9 +120,16 @@
     <!--vanilla JS-->
     <script src="js/sketch.js"></script>
     <script src="js/geo.js"></script>
+    <script src="js/multibar.js"></script>
+    <script src="js/multibar1.js"></script>
     <script src="js/shooting.js"></script>
     <script src="js/fulltimeline.js"></script>
     <script src="js/aos.js"></script>
     <script src="js/animate.js"></script>
+    <!--kaihong-->
+    <script src="libs/d3.min.js"></script>
+    <script src="libs/underscore-min.js"></script>
+    <script src="js/radar-chart.js"></script>
+    <script src="js/index.js"></script>
     <script src="js/main.js"></script> <!-- put this at the bery bottom -->
 </body></html>

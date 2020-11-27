@@ -57,7 +57,7 @@ function radarChart(selector, rawData, opts) {
     })
     return yearRawDataEvents
   }
-  console.log('rawDataGroupByYearMouth', rawDataGroupByYearMouth)
+  //console.log('rawDataGroupByYearMouth', rawDataGroupByYearMouth)
   function getMouthData(year, mouth) {
     // const mouthRawDataEvents = []
     const mouthRawData = rawDataGroupByYearMouth[`${year}-${mouth}`]
@@ -225,7 +225,7 @@ function radarChart(selector, rawData, opts) {
   function onClickYears(year) {
     clickYear = year
     const yearRawDataEvents = getYearData(year)
-    console.log('yearRawDataEvents', yearRawDataEvents)
+    //console.log('yearRawDataEvents', yearRawDataEvents)
     yAxisG.remove()
     lineG.selectAll('path').remove()
     areaG.selectAll('path').remove()
@@ -283,7 +283,7 @@ function radarChart(selector, rawData, opts) {
           .attr("fill", colors(d[0].mouth))
       })
       .on('click', function (a, d) {
-        console.log('d', d3.select(this).attr('data-year'))
+        //console.log('d', d3.select(this).attr('data-year'))
         if (direction === 'outer') {
           onGoOuter()
         } else {
@@ -294,7 +294,7 @@ function radarChart(selector, rawData, opts) {
 
   function onClickMouth(year, mouth) {
     const mouthRawDataEvents = getMouthData(year, mouth)
-    console.log('getMouthData', getMouthData(year, mouth))
+    //console.log('getMouthData', getMouthData(year, mouth))
     clickMouth = mouth
     direction = 'outer'
     yAxisG.remove()
@@ -329,9 +329,6 @@ function radarChart(selector, rawData, opts) {
         onClickYears(year)
       })
   }
-
-
-
 
 }
 

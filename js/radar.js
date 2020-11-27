@@ -50,7 +50,7 @@
   const rawDataGroupByYearArr = []
   const years = []
   const rawDataGroupByEvent = _.groupBy(rawData, d => d.Event)
-  console.log('rawDataGroupByYear', rawDataGroupByEvent, rawDataGroupByYear, rawData)
+  //console.log('rawDataGroupByYear', rawDataGroupByEvent, rawDataGroupByYear, rawData)
   const rawDataEvents = []
   Array.from({ length: 4 }).forEach((d, i) => {
     const rawData = []

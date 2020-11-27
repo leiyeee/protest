@@ -1,4 +1,3 @@
-/*
 $(function () {
 
     var vid = $('.video');
@@ -19,9 +18,8 @@ $(function () {
         } else {
             // otherwise remove it
             vid.removeClass('aside');
-            
+        
         }
     });
 
 });
-*/

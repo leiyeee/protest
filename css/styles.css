@@ -150,23 +150,6 @@ canvas {
 }
 
 /*videobutton*/
-@import url(https://fonts.googleapis.com/css?family=Tinos);
-
-html {
-    box-sizing: border-box;
-    font-family: "droid sans", sans-serif;
-}
-
-* {
-    box-sizing: inherit;
-    margin: 0;
-    padding: 0;
-    position: relative;
-}
-
-section + section {
-    margin-top: 1em;
-}
 
 .video {
     position: relative;

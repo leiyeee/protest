@@ -3,7 +3,7 @@ function geo() {
     var width = document.getElementById("geo").offsetWidth,
         height = document.getElementById("geo").offsetHeight,
         margin = 0;
-    
+
     console.log(height);
 
     var tooltip = d3.select("#geo")
@@ -14,7 +14,7 @@ function geo() {
     var svg = d3.select("#geo")
         .attr("class", "geo")
         .append("svg")
-        .attr("viewBox", "0 0 " + width + " " + height)
+        .attr("viewBox", "0 0 " + width + " " + width / 1.8)
         .attr("preserveAspectRatio", "xMidYMid meet")
 
     svg.style("overflow", "hidden")
@@ -26,7 +26,7 @@ function geo() {
 
         let projection = d3.geoMercator()
             .scale(800)
-            .translate([1750, 1050])
+            .translate([1750, 850])
 
         let path = d3.geoPath()
             .projection(projection);
@@ -48,14 +48,14 @@ function geo() {
             let eventtypeScale = d3.scaleOrdinal()
                 .domain(event_type)
                 .range(["red", "pink", "white"]);
-//
-//            const zoom = d3.zoom()
-//                .scaleExtent([1, 40])
-//                .translateExtent([[0, 0], [width, height]])
-//                .extent([[0, 0], [width, height]])
-//                .on("zoom", zoomed);
-//
-//            svg.call(zoom);
+            //
+            //            const zoom = d3.zoom()
+            //                .scaleExtent([1, 40])
+            //                .translateExtent([[0, 0], [width, height]])
+            //                .extent([[0, 0], [width, height]])
+            //                .on("zoom", zoomed);
+            //
+            //            svg.call(zoom);
 
             var group = svg.selectAll("g")
                 .data(swiss.features)
@@ -163,30 +163,30 @@ function geo() {
                 .attr('class', 'legendlabel')
             //.attr('transform', `translate(${svg.width * 2.8 / 4}, ${svg.height - 20})`);
 
-//            legendlabel.selectAll()
-//                .data(event_type)
-//                .enter()
-//                .append('text')
-//                .text((d, i) => (d))
-//                .attr("font-size", 10)
-//                .attr("x", 680)
-//                .attr("y", (d, i) => i * 23 + 30)
-//                .attr("fill", "white")
-//                .style("font-size", "14px")
-//            .style("font-family", "'Roboto', sans-serif")
-//            .style("font-weight", 200)
-//
-//            legend.selectAll()
-//                .data(event_type)
-//                .enter()
-//                .append('rect')
-//                .attr("x", 650)
-//                .attr("y", (d, i) => i * 23 + 20)
-//                .attr("width", 10)
-//                .attr("height", 10)
-//                .style("fill", function (d) {
-//                    return eventtypeScale(d)
-//                })
+            //            legendlabel.selectAll()
+            //                .data(event_type)
+            //                .enter()
+            //                .append('text')
+            //                .text((d, i) => (d))
+            //                .attr("font-size", 10)
+            //                .attr("x", 680)
+            //                .attr("y", (d, i) => i * 23 + 30)
+            //                .attr("fill", "white")
+            //                .style("font-size", "14px")
+            //            .style("font-family", "'Roboto', sans-serif")
+            //            .style("font-weight", 200)
+            //
+            //            legend.selectAll()
+            //                .data(event_type)
+            //                .enter()
+            //                .append('rect')
+            //                .attr("x", 650)
+            //                .attr("y", (d, i) => i * 23 + 20)
+            //                .attr("width", 10)
+            //                .attr("height", 10)
+            //                .style("fill", function (d) {
+            //                    return eventtypeScale(d)
+            //                })
 
             function handleMouseOver(d, i) {
                 d3.select(this).attr("r", 5);
@@ -227,4 +227,3 @@ function geo() {
 
 
 };
-

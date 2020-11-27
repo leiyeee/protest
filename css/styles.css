@@ -176,3 +176,33 @@ video {
 .story {
     width: 50vw;
 }
+
+/*type effect*/
+.videotitle {
+  border-right: solid 3px rgba(0,255,0,.75);
+  white-space: nowrap;
+  overflow: hidden;    
+  font-family: 'Roboto', sans-serif;  
+  font-size: 28px;
+  color: rgba(255,255,255,.70);
+}
+
+/* Animation */
+.videotitle {
+  animation: animated-text 4s steps(29,end) 1s 1 normal both,
+             animated-cursor 600ms steps(29,end) infinite;
+}
+
+/* text animation */
+
+@keyframes animated-text{
+  from{width: 0;}
+  to{width: 300px;}
+}
+
+/* cursor animations */
+
+@keyframes animated-cursor{
+  from{border-right-color: red;}
+  to{border-right-color: transparent;}
+}

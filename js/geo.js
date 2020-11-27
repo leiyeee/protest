@@ -154,39 +154,45 @@ function geo() {
             var areas = group.append("path")
                 .attr("d", path)
                 .attr("fill", "#2e2e2e");
+            
+            var svg1 = d3.select("#legend1")
+                .attr("class", "legend1")
+                .append("svg")
+                .attr("viewBox", "0 0 " + width + " " + width / 1.8)
+                .attr("preserveAspectRatio", "xMidYMid meet")
 
-            var legend = svg.append("g")
+            var legend = svg1.append("g")
                 .attr('class', 'legend')
             //.attr('transform', `translate(${svg.width * 2.8 / 4}, ${svg.height - 20})`);
 
-            var legendlabel = svg.append("g")
+            var legendlabel = svg1.append("g")
                 .attr('class', 'legendlabel')
             //.attr('transform', `translate(${svg.width * 2.8 / 4}, ${svg.height - 20})`);
 
-            //            legendlabel.selectAll()
-            //                .data(event_type)
-            //                .enter()
-            //                .append('text')
-            //                .text((d, i) => (d))
-            //                .attr("font-size", 10)
-            //                .attr("x", 680)
-            //                .attr("y", (d, i) => i * 23 + 30)
-            //                .attr("fill", "white")
-            //                .style("font-size", "14px")
-            //            .style("font-family", "'Roboto', sans-serif")
-            //            .style("font-weight", 200)
-            //
-            //            legend.selectAll()
-            //                .data(event_type)
-            //                .enter()
-            //                .append('rect')
-            //                .attr("x", 650)
-            //                .attr("y", (d, i) => i * 23 + 20)
-            //                .attr("width", 10)
-            //                .attr("height", 10)
-            //                .style("fill", function (d) {
-            //                    return eventtypeScale(d)
-            //                })
+            legendlabel.selectAll()
+                .data(event_type)
+                .enter()
+                .append('text')
+                .text((d, i) => (d))
+                .attr("font-size", 10)
+                .attr("x", 10)
+                .attr("y", (d, i) => i * 23 + 30)
+                .attr("fill", "white")
+                .style("font-size", "14px")
+                .style("font-family", "'Roboto', sans-serif")
+                .style("font-weight", 200)
+
+            legend.selectAll()
+                .data(event_type)
+                .enter()
+                .append('rect')
+                .attr("x", 10)
+                .attr("y", (d, i) => i * 23 + 20)
+                .attr("width", 10)
+                .attr("height", 10)
+                .style("fill", function (d) {
+                    return eventtypeScale(d)
+                })
 
             function handleMouseOver(d, i) {
                 d3.select(this).attr("r", 5);

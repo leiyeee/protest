@@ -68,3 +68,4 @@ function hideVideo() {
         hideVideo = noop;
     }
 };
+shooting();

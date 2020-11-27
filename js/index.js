@@ -64,7 +64,7 @@
     rawDataEvents.push(rawData)
   })
 
-  console.log('rawDataEvents', rawDataEvents)
+  //console.log('rawDataEvents', rawDataEvents)
   Object.keys(rawDataGroupByYear).sort((a, b) => Number(a) - Number(b)).forEach((year, i) => {
     let lastData = rawDataGroupByYearArr[i - 1] || []
     years.push(year)
@@ -86,6 +86,6 @@
     })
   })
 
-  console.log('rawDataGroupByYearArr==0', rawDataGroupByYearArr)
+  //console.log('rawDataGroupByYearArr==0', rawDataGroupByYearArr)
   radarChart('#radar-chart', rawData, eventsData, years)
 })()

@@ -2,7 +2,9 @@ function geo() {
 
     var width = document.getElementById("geo").offsetWidth,
         height = document.getElementById("geo").offsetHeight,
-        margin = 10;
+        margin = 0;
+    
+    console.log(height);
 
     var tooltip = d3.select("#geo")
         .append("div")
@@ -12,26 +14,22 @@ function geo() {
     var svg = d3.select("#geo")
         .attr("class", "geo")
         .append("svg")
-        .attr("viewBox", "0 0 900 500")
+        .attr("viewBox", "0 0 " + width + " " + height)
         .attr("preserveAspectRatio", "xMidYMid meet")
-
 
     svg.style("overflow", "hidden")
         .style("z-index", 0)
-
 
     d3.csv("data/acled.csv").then(function (data) {
 
         // var eventtype = ["Peaceful protest", "Attack", "Protest with intervention", "Other", "Violent demonstration", "Change to group/activity", "Excessive force against protesters", "Armed clash", "Disrupted weapons use", "Looting/property destruction", "Mob violence", "Sexual violence", "Arrests"]; // incase you need a colorscheme reference;
 
         let projection = d3.geoMercator()
-            .scale(600)
-            .translate([1320, 650])
+            .scale(800)
+            .translate([1750, 1050])
 
         let path = d3.geoPath()
             .projection(projection);
-
-
 
         d3.json("data/us-states.geojson").then(function (swiss) {
 
@@ -165,32 +163,30 @@ function geo() {
                 .attr('class', 'legendlabel')
             //.attr('transform', `translate(${svg.width * 2.8 / 4}, ${svg.height - 20})`);
 
-            console.log(event_type);
-
-            legendlabel.selectAll()
-                .data(event_type)
-                .enter()
-                .append('text')
-                .text((d, i) => (d))
-                .attr("font-size", 10)
-                .attr("x", 680)
-                .attr("y", (d, i) => i * 23 + 30)
-                .attr("fill", "white")
-                .style("font-size", "14px")
-            .style("font-family", "'Roboto', sans-serif")
-            .style("font-weight", 200)
-
-            legend.selectAll()
-                .data(event_type)
-                .enter()
-                .append('rect')
-                .attr("x", 650)
-                .attr("y", (d, i) => i * 23 + 20)
-                .attr("width", 10)
-                .attr("height", 10)
-                .style("fill", function (d) {
-                    return eventtypeScale(d)
-                })
+//            legendlabel.selectAll()
+//                .data(event_type)
+//                .enter()
+//                .append('text')
+//                .text((d, i) => (d))
+//                .attr("font-size", 10)
+//                .attr("x", 680)
+//                .attr("y", (d, i) => i * 23 + 30)
+//                .attr("fill", "white")
+//                .style("font-size", "14px")
+//            .style("font-family", "'Roboto', sans-serif")
+//            .style("font-weight", 200)
+//
+//            legend.selectAll()
+//                .data(event_type)
+//                .enter()
+//                .append('rect')
+//                .attr("x", 650)
+//                .attr("y", (d, i) => i * 23 + 20)
+//                .attr("width", 10)
+//                .attr("height", 10)
+//                .style("fill", function (d) {
+//                    return eventtypeScale(d)
+//                })
 
             function handleMouseOver(d, i) {
                 d3.select(this).attr("r", 5);

@@ -21,8 +21,10 @@ function fulltimeline() { // hi this is lucy
         .style("z-index", 0)
 
     $('#yipcountries').click(function () {
-       var selected = $("input[type='radio'][name='countries']:checked").val();
 
+        var selected = $("input[type='radio'][name='countries']:checked").val();
+
+        d3.selectAll(".tl").remove();
 
         d3.csv("data/ssp_simplified.csv").then(function (data) {
 
@@ -63,7 +65,7 @@ function fulltimeline() { // hi this is lucy
                 .range([3, 10]);
 
             var xaxistext = svg.append("text")
-                .attr("class", "xaxistext")
+                .attr("class", "tl xaxistext")
                 .attr("x", width - margin / 2)
                 .attr("y", height - margin / 2)
                 .text("Timeline")
@@ -71,7 +73,7 @@ function fulltimeline() { // hi this is lucy
                 .style("fill", "#bcbcbc");
 
             var xaxis = svg.append("g")
-                .attr("class", "yipxaxis")
+                .attr("class", "tl yipxaxis")
                 .attr("transform", "translate(0," + height * 0.8 + ")")
                 .call(d3.axisBottom(timeScale))
                 .style("opacity", 0)
@@ -92,7 +94,7 @@ function fulltimeline() { // hi this is lucy
                 .enter()
                 .append("circle")
                 .attr("class", function (d) {
-                    return "nodes " + d.eventid;
+                    return "tl nodes " + d.eventid;
                 })
                 .attr("r", function (d) {
                     return violenceScale(d.violence_policeorstate);
@@ -135,8 +137,6 @@ function fulltimeline() { // hi this is lucy
 
             node
                 .on("mouseover", function (event, d) {
-
-                    console.log(d);
 
                     let tip = "<svg height='10' width='20'><polygon class='tip' points='10,0,20,10,0,10'/></svg>";
 

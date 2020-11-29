@@ -189,7 +189,7 @@ video {
 
 /* Animation */
 .videotitle {
-  animation: animated-text 4s steps(29,end) 1s 1 normal both,
+  animation: animated-text 6s steps(29,end) 1s 1 normal both,
              animated-cursor 600ms steps(29,end) infinite;
 }
 
@@ -205,4 +205,27 @@ video {
 @keyframes animated-cursor{
   from{border-right-color: red;}
   to{border-right-color: transparent;}
+}
+
+/*legend for the map*/
+.circle {
+    padding-right: 10px;
+    width:10px;
+    height:10px;
+    border-radius:50px;
+    
+    color:#fff;
+    line-height:100px;
+    background: green;
+    display: inline-block;
+   
+}
+.red-circle {
+    background: red;
+}
+.blue-circle {
+    background: blue;
+}
+.legendText{
+   font-size:8px; 
 }

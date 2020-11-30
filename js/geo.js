@@ -155,11 +155,11 @@ function geo() {
                 .attr("d", path)
                 .attr("fill", "#2e2e2e");
             
-            var svg1 = d3.select("#legend1")
+           /* var svg1 = d3.select("#legend1")
                 .attr("class", "legend1")
-                .append("svg")
+                .append("svg1")
                 .attr("viewBox", "0 0 " + width + " " + width / 1.8)
-                .attr("preserveAspectRatio", "xMidYMid meet")
+                //.attr("preserveAspectRatio", "xMidYMid meet")
 
             var legend = svg1.append("g")
                 .attr('class', 'legend')
@@ -175,7 +175,7 @@ function geo() {
                 .append('text')
                 .text((d, i) => (d))
                 .attr("font-size", 10)
-                .attr("x", 10)
+                .attr("x", 130)
                 .attr("y", (d, i) => i * 23 + 30)
                 .attr("fill", "white")
                 .style("font-size", "14px")
@@ -186,14 +186,14 @@ function geo() {
                 .data(event_type)
                 .enter()
                 .append('rect')
-                .attr("x", 10)
+                .attr("x", 30)
                 .attr("y", (d, i) => i * 23 + 20)
                 .attr("width", 10)
                 .attr("height", 10)
                 .style("fill", function (d) {
                     return eventtypeScale(d)
                 })
-
+*/
             function handleMouseOver(d, i) {
                 d3.select(this).attr("r", 5);
             };

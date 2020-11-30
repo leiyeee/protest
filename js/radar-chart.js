@@ -11,13 +11,17 @@ function radarChart(selector, rawData, opts) {
   // curveLinearClosed
   // curveCardinal
   // curveCardinalClosed
+  // curveBasis
+
   const area = d3.areaRadial()
-    .curve(d3.curveBasis)
-    .angle(d => x(d.Event))
+    .curve(d3.curveCardinalClosed)
+    .angle((d, i) => {
+      return angleScale(i)
+    })
 
   const line = d3.lineRadial()
-    .curve(d3.curveBasis)
-    .angle(d => x(d.Event))
+    .curve(d3.curveCardinalClosed)
+    .angle((d, i) => angleScale(i))
 
   let direction = 'inner'
   let clickYear = ''
@@ -57,7 +61,6 @@ function radarChart(selector, rawData, opts) {
     })
     return yearRawDataEvents
   }
-  //console.log('rawDataGroupByYearMouth', rawDataGroupByYearMouth)
   function getMouthData(year, mouth) {
     // const mouthRawDataEvents = []
     const mouthRawData = rawDataGroupByYearMouth[`${year}-${mouth}`]
@@ -85,14 +88,13 @@ function radarChart(selector, rawData, opts) {
       .attr("fill", "none")
       .call(g => g.append("circle")
         .attr("stroke", "#000")
-        .attr("stroke-opacity", 0.2)
+        .attr("stroke-opacity", 0.1)
+        .attr("stroke-width", 0.1)
         .attr("r", y))
       .call(g => g.append("text")
         .attr("y", d => -y(d))
         .attr("dy", "0.35em")
-        .attr("stroke", "#fff")
         .attr("stroke-width", 5)
-        // .text((x, i) => `${x.toFixed(0)}`)
         .text((x, i) => {
           return x >= 1000 ? (x / 1000).toFixed(1) + 'k' : x
         })
@@ -109,10 +111,8 @@ function radarChart(selector, rawData, opts) {
     .call(g => g.selectAll("g")
       .data(eventsData)
       .join("g")
-      // .each((d, i) => d.id = guid())
       .call(g => g.append("path")
         .attr("stroke", options.xStroke)
-        // .attr("stroke-width", "3")
         .attr("stroke-opacity", 0)
         .attr("d", d => `
               M${d3.pointRadial(x(d), innerRadius)}
@@ -128,12 +128,22 @@ function radarChart(selector, rawData, opts) {
         `
         }))
       .call(g => g.append('text')
+        .attr('fill', '#ff6666')
         .append("textPath")
         .attr("xlink:href", d => `#${d}`)
         .text(d => d)))
-  let y = d3.scaleLinear()
+
+  let y = d3.scalePow()
+    .exponent(0.4)
     .domain(d3.extent(firstRawDataEvents[firstRawDataEvents.length - 1], d => d.Attendees).map((d, i) => i === 1 ? d : 0))
     .range([innerRadius, outerRadius])
+  const radiusScale = d3.scalePow()
+    .exponent(0.4)
+    .domain(d3.extent(firstRawDataEvents[firstRawDataEvents.length - 1], d => d.Attendees).map((d, i) => i === 1 ? d : 0))
+    .range([innerRadius, outerRadius])
+  const angleScale = d3.scaleLinear()
+    .range([0, 2 * Math.PI])
+    .domain([0, eventsData.length]);
 
   const x = d3.scaleBand()
     .domain(eventsData)
@@ -145,6 +155,8 @@ function radarChart(selector, rawData, opts) {
       .range([0, 1])(e)
     return d3.interpolateSinebow(d)
   }
+
+  const colorInterpolator = d3.interpolateRgb(d3.color("#ff6666"), d3.color("#8293b6"));
 
   const svg = d3.select(selector).append("svg")
     .attr("width", width)
@@ -163,8 +175,8 @@ function radarChart(selector, rawData, opts) {
   function onGoOuter() {
     direction = 'inner'
     yAxisG.remove()
-    lineG.selectAll('path').remove()
-    areaG.selectAll('path').remove()
+    // areaG.selectAll('path').remove()
+    const colorScheme = d3.quantize(colorInterpolator, firstRawDataEvents.length);
 
     colors = (e) => {
       const d = d3.scaleBand()
@@ -172,31 +184,25 @@ function radarChart(selector, rawData, opts) {
         .range([0, 1])(e)
       return d3.interpolateSinebow(d)
     }
-    y = d3.scaleLinear()
+    y = d3.scalePow()
+      .exponent(0.4)
       .domain(d3.extent(firstRawDataEvents[firstRawDataEvents.length - 1], d => d.Attendees).map((d, i) => i === 1 ? d : 0))
       .range([innerRadius, outerRadius])
 
     yAxisG = svg.append("g")
       .call(yAxis);
 
-    lineG.selectAll('path')
+    const areaPaths = areaG.selectAll('path')
       .data(firstRawDataEvents)
       .join('path')
-      .attr("fill", "none")
-      .attr("stroke", '#000')
-      .attr("stroke-width", 0.5)
-      .attr("d", (od, i) => {
-        return line
-          .radius((d, j) => {
-            return y(d.Attendees)
-          })(od)
-      })
+      .attr('class', 'go-outer')
 
-    areaG.selectAll('path')
-      .data(firstRawDataEvents)
-      .join('path')
-      .attr("fill", (d) => colors(d.year))
-      .attr("fill-opacity", 0.2)
+
+    areaPaths.transition()
+      .duration(800)
+      .style('fill', (d, i) => colorScheme[i])
+      .style('fill-opacity', 0.8)
+      .style('cursor', 'pointer')
       .attr('data-index', (d, i) => i)
       .attr("d", (od, i) => {
         return area
@@ -204,33 +210,40 @@ function radarChart(selector, rawData, opts) {
             if (i === 0) return y(0)
             return y(firstRawDataEvents[i - 1][j].Attendees)
           })
-          .outerRadius(d => y(d.Attendees))
+          .outerRadius(d => {
+            return y(d.Attendees)
+          })
           (od)
       })
-      .on('mouseover', function () {
-        d3.select(this)
-          .attr("fill", '#fff')
-      })
+
+    areaPaths.on('mouseover', function () {
+      d3.select(this)
+        .style("fill", '#fff')
+    })
       .on('mouseout', function (e, d) {
         d3.select(this)
-          .attr("fill", colors(d.year))
+          .style("fill", colorScheme[Number(d3.select(this).attr('data-index'))])
       })
       .on('click', function (a, d) {
         const year = 2017 + Number(d3.select(this).attr('data-index'))
         onClickYears(year)
+        opts.onClickYears && opts.onClickYears(year)
       })
+
+    areaG.selectAll('path.go-years').remove()
+    areaG.selectAll('path.go-month').remove()
+
   }
 
 
   function onClickYears(year) {
     clickYear = year
     const yearRawDataEvents = getYearData(year)
-    //console.log('yearRawDataEvents', yearRawDataEvents)
+    const colorScheme = d3.quantize(colorInterpolator, yearRawDataEvents.length);
     yAxisG.remove()
-    lineG.selectAll('path').remove()
-    areaG.selectAll('path').remove()
 
-    y = d3.scaleLinear()
+    y = d3.scalePow()
+      .exponent(0.4)
       .domain(d3.extent(yearRawDataEvents[yearRawDataEvents.length - 1], d => d.Attendees).map((d, i) => i === 1 ? d : 0))
       .range([innerRadius, outerRadius])
 
@@ -243,28 +256,18 @@ function radarChart(selector, rawData, opts) {
     yAxisG = svg.append("g")
       .call(yAxis);
 
-    lineG.selectAll('path')
+    const areaPaths = areaG.selectAll('path')
       .data(yearRawDataEvents)
       .join('path')
-      .attr("fill", "none")
-      .attr("stroke", '#000') // 
-      .attr("stroke-width", 0.5)
-      .attr("d", (od, i) => {
-        return line
-          .radius((d, j) => {
-            return y(d.Attendees)
-          })(od)
-      })
+      .attr('class', 'go-years')
 
-    areaG.selectAll('path')
-      .data(yearRawDataEvents)
-      .join('path')
-      .attr("fill", (d) => {
-        return colors(d[0].mouth)
-      })
+    areaPaths.transition()
+      .duration(800)
+      .style('fill', (d, i) => colorScheme[i])
+      .style('fill-opacity', 0.8)
+      .style('cursor', 'pointer')
       .attr('data-year', year)
       .attr('data-mouth', (d, i) => i)
-      .attr("fill-opacity", 0.2)
       .attr("d", (od, i) => {
         return area
           .innerRadius((d, j) => {
@@ -274,60 +277,63 @@ function radarChart(selector, rawData, opts) {
           .outerRadius(d => y(d.Attendees))
           (od)
       })
-      .on('mouseover', function () {
-        d3.select(this)
-          .attr("fill", '#fff')
-      })
+
+    areaPaths.on('mouseover', function () {
+      d3.select(this)
+        .style("fill", '#fff')
+    })
       .on('mouseout', function (e, d) {
         d3.select(this)
-          .attr("fill", colors(d[0].mouth))
+          .style("fill", colorScheme[d3.select(this).attr('data-mouth')])
       })
       .on('click', function (a, d) {
-        //console.log('d', d3.select(this).attr('data-year'))
         if (direction === 'outer') {
           onGoOuter()
+          opts.onClickGoOut && opts.onClickGoOut(d3.select(this).attr('data-year'), d3.select(this).attr('data-mouth'))
         } else {
           onClickMouth(d3.select(this).attr('data-year'), d3.select(this).attr('data-mouth'))
+          opts.onClickMouth && opts.onClickMouth(d3.select(this).attr('data-year'), d3.select(this).attr('data-mouth'))
         }
       })
+    areaG.selectAll('path.go-outer').remove()
+    areaG.selectAll('path.go-month').remove()
   }
-
+  // onClickMouth(2017, 0)
   function onClickMouth(year, mouth) {
     const mouthRawDataEvents = getMouthData(year, mouth)
-    //console.log('getMouthData', getMouthData(year, mouth))
+    const colorScheme = d3.quantize(colorInterpolator, 0);
+
     clickMouth = mouth
     direction = 'outer'
     yAxisG.remove()
-    lineG.selectAll('path').remove()
-    areaG.selectAll('path').remove()
 
-    y = d3.scaleLinear()
-      // .domain(d3.extent(mouthRawDataEvents, d => d.Attendees).map((d, i) => i === 1 ? d : 0))
+    y = d3.scalePow()
+      .exponent(0.5)
       .domain([0, d3.max(mouthRawDataEvents, d => d.Attendees)])
       .range([innerRadius, outerRadius])
 
     yAxisG = svg.append("g")
       .call(yAxis);
 
-    lineG.append('path')
-      .attr("fill", "none")
-      .attr("stroke", '#000') // 
-      .attr("stroke-width", 0.5)
-      .attr("d", line
-        .radius((d) => {
-          return y(d.Attendees)
-        })(mouthRawDataEvents))
+    const aearPath = areaG.append('path').attr('class', 'go-month')
 
-    areaG.append('path')
-      .attr("fill", 'red')
-      .attr("fill-opacity", 0.2)
+    aearPath.transition()
+      .duration(800)
+      .style("fill", '#ff6666')
+      .style("fill-opacity", 0.8)
+      .style('cursor', 'pointer')
       .attr("d", area
         .innerRadius(y(0))
         .outerRadius(d => y(d.Attendees))
         (mouthRawDataEvents))
-      .on('click', function (a, d) {
-        onClickYears(year)
-      })
+
+    aearPath.on('click', function (a, d) {
+      onClickYears(year)
+      opts.onClickYears && opts.onClickYears(year)
+    })
+
+    areaG.selectAll('path.go-outer').remove()
+    areaG.selectAll('path.go-years').remove()
   }
 
 }

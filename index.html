@@ -150,11 +150,12 @@
     </section>
 
     <section class="fullPage fullPagePadding" id="section6">
-        <div style="display: flex;justify-content: center;flex-direction: column; align-items: center;">
-            <div class="button-wrappers" style="margin-bottom: 40px;">
-            </div>
-            <div id="radar-chart"></div>
+        <div style="display: flex;">
+            <div id="radar-chart" style="margin:0 30px;"></div>
+            <div id="waffle-chart"></div>
+            <div id="waffle-item-chart"></div>
         </div>
+
     </section>
     <!--
 
@@ -187,8 +188,11 @@
 
     <!--kaihong-->
     <script src="libs/d3.min.js"></script>
+    <script src="libs/d3-legend.min.js"></script>
     <script src="libs/underscore-min.js"></script>
     <script src="js/radar-chart.js"></script>
-    <script src="js/radar.js"></script>
-    <script src="js/main.js"></script> <!-- put this at the bery bottom -->
+    <script src="js/waffleChart.js"></script>
+    <script src="js/waffleItemChart.js"></script>
+    <script src="index.js"></script>
+    <!-- put this at the bery bottom -->
 </body></html>

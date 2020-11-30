@@ -216,15 +216,15 @@ video {
     
     color:#fff;
     line-height:100px;
-    background: green;
+    background: #FFDBDA;
     display: inline-block;
    
 }
 .red-circle {
-    background: red;
+    background: #DB7F8E;
 }
 .blue-circle {
-    background: blue;
+    background: #9DA3A4;
 }
 .legendText{
    font-size:8px; 

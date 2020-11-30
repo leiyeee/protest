@@ -27,7 +27,7 @@ function shooting() { // hi this is lucy
             day_count = 0;
 
         data.forEach(function (d) {
-            
+
             if (race.includes(d.race) == false) {
                 race.push(d.race);
             }
@@ -52,7 +52,7 @@ function shooting() { // hi this is lucy
 
         let raceScale = d3.scaleOrdinal()
             .domain(["A", "W", "H", "B", "O", "", "N"])
-            .range(["#eddaa1", "#eddcd5", "#963914", "#54001c", "#91919", "#919191", "#919191"]);
+            .range(["#D5C5C8", "#9DA3A4", "#604D53", "#54001c", "#DB7F8E", "#FFDBDA", "#FFB4A2"]);
 
         //        svg.append("rect")
         //            .attr("x", 0)
@@ -96,6 +96,17 @@ function shooting() { // hi this is lucy
             .style("fill", function (d) {
                 return raceScale(d.race);
             })
+            .on("mouseover", function (event, d) {
+                let tip = "<svg height='10' width='20'><polygon class='tip' points='10,0,20,10,0,10'/></svg>";
+                tooltip
+                    .html("<div class='tipp'><div class='tip'>" + tip + "<p class='tooltiptext'>"+"Name: " + d.name + "<br>" + "Race: " + d.race + "<br>" + "Manner of Death: " + d.manner_of_death + "<br>" + "Reason: He or she had "+ d.armed)
+                    .style("top", (+this.attributes.cy.value + 30) + "px")
+                    .style("left", (+this.attributes.cx.value - 100) + "px")
+                    .transition()
+                    .style("opacity", 1);
+            })
+            .on("mouseleave",  function (event, d) {tooltip.transition().style("opacity", 0).transition().style("top", 0 + "px")})
+
 
     });
 };

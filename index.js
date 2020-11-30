@@ -50,7 +50,6 @@
   const rawDataGroupByYearArr = []
   const years = []
   const rawDataGroupByEvent = _.groupBy(rawData, d => d.Event)
-  console.log('rawDataGroupByYear', rawDataGroupByEvent, rawDataGroupByYear, rawData)
   const rawDataEvents = []
   Array.from({ length: 4 }).forEach((d, i) => {
     const rawData = []
@@ -64,7 +63,6 @@
     rawDataEvents.push(rawData)
   })
 
-  console.log('rawDataEvents', rawDataEvents)
   Object.keys(rawDataGroupByYear).sort((a, b) => Number(a) - Number(b)).forEach((year, i) => {
     let lastData = rawDataGroupByYearArr[i - 1] || []
     years.push(year)
@@ -85,7 +83,18 @@
       year
     })
   })
-
-  console.log('rawDataGroupByYearArr==0', rawDataGroupByYearArr)
-  radarChart('#radar-chart', rawData, eventsData, years)
+  radarChart('#radar-chart', rawData, {
+    onClickYears(year) {
+      d3.select('#waffle-item-chart svg').remove()
+      waffleChart('#waffle-chart', rawData).update(year)
+    },
+    onClickMouth(year, month) {
+      d3.select('#waffle-chart svg').remove()
+      waffleItemChart('#waffle-item-chart', rawData).update(year, month)
+    },
+    onClickGoOut() {
+      d3.select('#waffle-chart svg').remove()
+      d3.select('#waffle-item-chart svg').remove()
+    },
+  })
 })()

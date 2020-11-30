@@ -47,7 +47,7 @@ function geo() {
 
             let eventtypeScale = d3.scaleOrdinal()
                 .domain(event_type)
-                .range(["red", "pink", "white"]);
+                .range(["9DA3A4", "DB7F8E", "FFDBDA"]);
             //
             //            const zoom = d3.zoom()
             //                .scaleExtent([1, 40])
@@ -68,9 +68,9 @@ function geo() {
                 .append("circle")
                 .attr("r", function (d) {
                     if (d.SUB_EVENT_TYPE == "Excessive force against protesters" || d.SUB_EVENT_TYPE == "Disrupted weapons use" || d.SUB_EVENT_TYPE == "Armed clash") {
-                        return 3;
+                        return 3.5;
                     } else if (d.SUB_EVENT_TYPE == "Peaceful protest" || d.SUB_EVENT_TYPE == "Protest with intervention" || d.SUB_EVENT_TYPE == "Other" || d.SUB_EVENT_TYPE == "Change to group/activity") {
-                        return 1;
+                        return 1.5;
                     } else {
                         return 2;
                     }
@@ -83,11 +83,11 @@ function geo() {
                 })
                 .style("fill", function (d) {
                     if (d.SUB_EVENT_TYPE == "Excessive force against protesters" || d.SUB_EVENT_TYPE == "Disrupted weapons use" || d.SUB_EVENT_TYPE == "Armed clash") {
-                        return "red";
+                        return "9DA3A4";
                     } else if (d.SUB_EVENT_TYPE == "Peaceful protest" || d.SUB_EVENT_TYPE == "Protest with intervention" || d.SUB_EVENT_TYPE == "Other" || d.SUB_EVENT_TYPE == "Change to group/activity") {
-                        return "white";
+                        return "DB7F8E";
                     } else {
-                        return "pink";
+                        return "FFDBDA";
                     }
                 })
                 /*  .on("mouseover", function (d) {
@@ -155,11 +155,11 @@ function geo() {
                 .attr("d", path)
                 .attr("fill", "#2e2e2e");
             
-           /* var svg1 = d3.select("#legend1")
+            var svg1 = d3.select("#legend1")
                 .attr("class", "legend1")
-                .append("svg1")
+                .append("svg")
                 .attr("viewBox", "0 0 " + width + " " + width / 1.8)
-                //.attr("preserveAspectRatio", "xMidYMid meet")
+                .attr("preserveAspectRatio", "xMidYMid meet")
 
             var legend = svg1.append("g")
                 .attr('class', 'legend')
@@ -175,7 +175,7 @@ function geo() {
                 .append('text')
                 .text((d, i) => (d))
                 .attr("font-size", 10)
-                .attr("x", 130)
+                .attr("x", 10)
                 .attr("y", (d, i) => i * 23 + 30)
                 .attr("fill", "white")
                 .style("font-size", "14px")
@@ -186,24 +186,24 @@ function geo() {
                 .data(event_type)
                 .enter()
                 .append('rect')
-                .attr("x", 30)
+                .attr("x", 10)
                 .attr("y", (d, i) => i * 23 + 20)
                 .attr("width", 10)
                 .attr("height", 10)
                 .style("fill", function (d) {
                     return eventtypeScale(d)
                 })
-*/
+
             function handleMouseOver(d, i) {
-                d3.select(this).attr("r", 5);
+                d3.select(this).attr("r", 6);
             };
 
             function handleMouseOut(d, i) {
                 d3.select(this).attr("r", function (d) {
                     if (d.SUB_EVENT_TYPE == "Excessive force against protesters" || d.SUB_EVENT_TYPE == "Disrupted weapons use" || d.SUB_EVENT_TYPE == "Armed clash") {
-                        return 3;
+                        return 3.5;
                     } else if (d.SUB_EVENT_TYPE == "Peaceful protest" || d.SUB_EVENT_TYPE == "Protest with intervention" || d.SUB_EVENT_TYPE == "Other" || d.SUB_EVENT_TYPE == "Change to group/activity") {
-                        return 1;
+                        return 1.5;
                     } else {
                         return 2;
                     }

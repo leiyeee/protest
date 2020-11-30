@@ -179,53 +179,70 @@ video {
 
 /*type effect*/
 .videotitle {
-  border-right: solid 3px rgba(0,255,0,.75);
-  white-space: nowrap;
-  overflow: hidden;    
-  font-family: 'Roboto', sans-serif;  
-  font-size: 28px;
-  color: rgba(255,255,255,.70);
+    border-right: solid 3px rgba(0, 255, 0, .75);
+    white-space: nowrap;
+    overflow: hidden;
+    font-family: 'Roboto', sans-serif;
+    font-size: 28px;
+    color: rgba(255, 255, 255, .70);
 }
 
 /* Animation */
 .videotitle {
-  animation: animated-text 6s steps(29,end) 1s 1 normal both,
-             animated-cursor 600ms steps(29,end) infinite;
+    animation: animated-text 6s steps(29, end) 1s 1 normal both,
+        animated-cursor 600ms steps(29, end) infinite;
 }
 
 /* text animation */
 
-@keyframes animated-text{
-  from{width: 0;}
-  to{width: 300px;}
+@keyframes animated-text {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 300px;
+    }
 }
 
 /* cursor animations */
 
-@keyframes animated-cursor{
-  from{border-right-color: red;}
-  to{border-right-color: transparent;}
+@keyframes animated-cursor {
+    from {
+        border-right-color: red;
+    }
+
+    to {
+        border-right-color: transparent;
+    }
 }
 
 /*legend for the map*/
 .circle {
     padding-right: 10px;
-    width:10px;
-    height:10px;
-    border-radius:50px;
-    
-    color:#fff;
-    line-height:100px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50px;
+
+    color: #fff;
+    line-height: 100px;
     background: #FFDBDA;
     display: inline-block;
-   
+
 }
+
 .red-circle {
     background: #DB7F8E;
 }
+
 .blue-circle {
     background: #9DA3A4;
 }
-.legendText{
-   font-size:8px; 
+
+.legendText {
+    font-size: 8px;
+}
+
+.bar:hover {
+    fill: #FFFFFF;
 }

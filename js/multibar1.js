@@ -1,6 +1,6 @@
-function yelei88(){ 
+function yelei88() {
 
-// set the dimensions and margins of the graph
+    // set the dimensions and margins of the graph
     var margin = {
             top: 150,
             right: 30,
@@ -20,13 +20,13 @@ function yelei88(){
             "translate(" + margin.left + "," + margin.top + ")");
 
     // Parse the Data
-    d3.csv("data/proverty2.csv").then(function(data) {
+    d3.csv("data/proverty2.csv").then(function (data) {
 
         // List of subgroups = header of the csv files = soil condition here
         var subgroups = data.columns.slice(1)
 
         // List of groups = species here = value of the first column called group -> I show them on the X axis
-        var groups = d3.map(data, function(d) {
+        var groups = d3.map(data, function (d) {
             return d.group
         });
 
@@ -37,7 +37,7 @@ function yelei88(){
             .padding([0.2])
         svg.append("g")
             .attr("transform", "translate(0," + height + ")")
-            .call(d3.axisBottom(x).tickSize(0));
+            .call(d3.axisBottom(x).tickSize(8));
 
         // Add Y axis
         var y = d3.scaleLinear()
@@ -55,7 +55,7 @@ function yelei88(){
         // color palette = one color per subgroup
         var color = d3.scaleOrdinal()
             .domain(subgroups)
-            .range(d3.schemeRdPu[9])
+            .range(["#D5C5C8", "#9DA3A4", "#604D53", "#54001c", "#DB7F8E", "#FFDBDA", "#FFB4A2"])
 
         // Show the bars
         svg.append("g")
@@ -64,12 +64,12 @@ function yelei88(){
             .data(data)
             .enter()
             .append("g")
-            .attr("transform", function(d) {
+            .attr("transform", function (d) {
                 return "translate(" + x(d.group) + ",0)";
             })
-            .selectAll("rect")
-            .data(function(d) {
-                return subgroups.map(function(key) {
+            .selectAll(".bar")
+            .data(function (d) {
+                return subgroups.map(function (key) {
                     return {
                         key: key,
                         value: d[key]
@@ -77,28 +77,29 @@ function yelei88(){
                 });
             })
             .enter().append("rect")
-            .attr("x", function(d) {
+            .attr("class", "bar")
+            .attr("x", function (d) {
                 return xSubgroup(d.key);
             })
             .transition()
-            .delay(function(d) {
+            .delay(function (d) {
                 return Math.random() * 1000;
             })
             .duration(1000)
-            .attr("y", function(d) {
+            .attr("y", function (d) {
                 return y(d.value);
             })
             .attr("width", xSubgroup.bandwidth())
-            .attr("height", function(d) {
+            .attr("height", function (d) {
                 return height - y(d.value);
             })
-            .attr("fill", function(d) {
+            .attr("fill", function (d) {
                 return color(d.key);
             })
 
 
     })
-    
-    };
+
+};
 
 yelei88();

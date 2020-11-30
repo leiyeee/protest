@@ -39,7 +39,6 @@ function moveVideo() {
         wH = $(window).height(),
         wS = $(this).scrollTop();
     if (wS > (hT + hH - wH - 50)) {
-        noLoop();
         document.getElementById("video").style.transition = "all 1s";
         document.getElementById("video").style.position = "fixed";
         document.getElementById("video").style.top = "25px";
@@ -53,7 +52,7 @@ function moveVideo() {
         document.getElementById("videoText").style.alignItems = "center";
         document.getElementById("videoText").style.justifyContent = "center";
         document.getElementById("section1").style.height = "auto";
-        //moveVideo = noop;
+        moveVideo = noop;
     }
 };
 
@@ -66,21 +65,7 @@ function hideVideo() {
         document.getElementById("video").style.transition = "all 0.5s";
         document.getElementById("video").style.width = "0";
         //document.getElementById("video").style.display = "none";
-        hideVideo = hideVideoTopBot;
+        hideVideo = noop;
     }
 };
-
-function hideVideoTopBot() {
-    var hT = $('#section1').offset().top,
-        hH = $('#section1').outerHeight(),
-        wH = $(window).height(),
-        wS = $(this).scrollTop();
-    if (wS > (hT + hH - 500) || wS < hT - 500) {
-        document.getElementById("video").style.transition = "all 0.5s";
-        document.getElementById("video").style.width = "0";
-        //document.getElementById("video").style.display = "none";
-        //hideVideo = noop;
-    }
-};
-
 shooting();

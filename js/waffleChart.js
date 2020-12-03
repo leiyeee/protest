@@ -82,8 +82,8 @@ function waffleChart(selector, rawDatas) {
                 .data(months)
                 .join('text')
                 .attr('transform', (d, i) => `translate(${getTranslate(i)}, 0)`)
-                .attr('fill', '#ff6666')
-                .attr('stroke', '#ff6666')
+                .attr('fill', '#eee')
+                .attr('stroke', '#eee')
                 .text(d => Number(d) + 1)
 
             const eachReact = rectG.selectAll('path')
@@ -107,7 +107,7 @@ function waffleChart(selector, rawDatas) {
                 .append('title')
                 .text(d => d.Source)
 
-            legendG.call(legend).call(g => g.selectAll('text.label').attr('fill', '#ff6666'))
+            legendG.call(legend).call(g => g.selectAll('text.label').attr('fill', '#eee'))
 
         },
         remove() {

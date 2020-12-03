@@ -83,18 +83,52 @@
       year
     })
   })
-  radarChart('#radar-chart', rawData, {
-    onClickYears(year) {
-      d3.select('#waffle-item-chart svg').remove()
-      waffleChart('#waffle-chart', rawData).update(year)
-    },
-    onClickMouth(year, month) {
-      d3.select('#waffle-chart svg').remove()
-      waffleItemChart('#waffle-item-chart', rawData).update(year, month)
-    },
-    onClickGoOut() {
-      d3.select('#waffle-chart svg').remove()
-      d3.select('#waffle-item-chart svg').remove()
-    },
+
+  let yearOptions = `<option></option>`
+  years.forEach(year => {
+    yearOptions = yearOptions + `<option value="${year}">${year}</option>`
   })
+
+  document.querySelector('select.group1-select-years').innerHTML = yearOptions
+  // document.querySelector('select.group2-select-years').innerHTML = yearOptions
+  let currentYear = null
+  const radarChartItem = radarChart('#radar-chart', rawData)
+  window.onSelectGroup1Year = function (val) {
+    d3.select('#waffle-chart svg').remove()
+    d3.select('#waffle-item-chart svg').remove()
+    currentYear = val
+    if (!val) {
+      radarChartItem.onGoOuter()
+      document.querySelector('select.group1-select-month').innerHTML = '<option></option>'
+      return
+    }
+    radarChartItem.onClickYears(val)
+
+    waffleChart('#waffle-chart', rawData).update(val)
+    let monthOptions = `<option></option>`
+    Array.from({ length: 12 }).forEach((t, i) => {
+      monthOptions = monthOptions + `<option value="${i}">${i + 1}</option>`
+    })
+    document.querySelector('select.group1-select-month').innerHTML = monthOptions
+
+  }
+
+  window.onSelectGroup1Month = function (val) {
+    d3.select('#waffle-chart svg').remove()
+    d3.select('#waffle-item-chart svg').remove()
+    if (!val) {
+      radarChartItem.onClickYears(currentYear)
+
+      waffleChart('#waffle-chart', rawData).update(currentYear)
+      return
+    }
+    radarChartItem.onClickMouth(currentYear, val)
+    waffleItemChart('#waffle-item-chart', rawData).update(currentYear, val)
+  }
+
+
+  window.onSelectGroup2Year = function (val) {
+    radarChartItem.onClickYears(val)
+
+  }
 })()

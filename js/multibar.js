@@ -44,7 +44,9 @@ function yelei88() {
             .domain([0, 40])
             .range([height, 0]);
         svg.append("g")
+            .attr("class", "ylyax")
             .call(d3.axisLeft(y));
+
 
         // Another scale for subgroup position
         var xSubgroup = d3.scaleBand()

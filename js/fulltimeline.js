@@ -71,7 +71,7 @@ function fulltimeline() { // hi this is lucy
             .style("fill", "#bcbcbc");
 
         var xaxis = svg.append("g")
-            .attr("class", "tl yipxaxis")
+            .attr("class", "tl ylxaxis")
             .attr("transform", "translate(0," + height * 0.8 + ")")
             .call(d3.axisBottom(timeScale))
             .style("opacity", 0)
@@ -79,7 +79,7 @@ function fulltimeline() { // hi this is lucy
             .delay(3000)
             .style("opacity", 1);
 
-        xaxis.transition().selectAll(".yipxaxis line")
+        xaxis.transition().selectAll(".ylxaxis line")
             .style("stroke-width", 0.1)
             .style("stroke", "#bcbcbc")
             .style("stroke-dasharray", "1,5")
@@ -167,6 +167,6 @@ function fulltimeline() { // hi this is lucy
 
 };
 
-$('#yipcountries').click(function () {
+$('#ylcountries').click(function () {
     fulltimeline();
 });

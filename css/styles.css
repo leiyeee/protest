@@ -1,37 +1,40 @@
 :root {
     --gry: #c9c9c7;
-    --horizontalMargin: 125px;
+    --horizontalMargin: 300px;
     --font: 'Roboto', sans-serif;
 }
 
-/*body {
-    background-color: var(--bkColor) !important;
+body {
+    background-color: black !important;
     overflow-x: hidden;
-}*/
-/* 1. Enable smooth scrolling */
+}
+
 html {
     scroll-behavior: smooth;
 }
 
-/* 2. Make nav sticky */
-main > nav {
-    position: sticky;
-    top: 2rem;
-    align-self: start;
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+
 }
 
-/* 3. ScrollSpy active styles (see JS tab for activation) */
 .section-nav li.active > a {
     color: #333;
     font-weight: 500;
     font-size: 15px;
 }
 
-/* Sidebar Navigation */
 .section-nav {
     padding-left: 0;
-    border-left: 1px solid #efefef;
+    padding-top: 350px;
+    /*border-left: 1px solid #efefef;*/
 }
+
 
 .section-nav a {
     text-decoration: none;
@@ -48,19 +51,6 @@ main > nav {
     color: #666;
 }
 
-/** Poor man's reset **/
-* {
-    box-sizing: border-box;
-}
-
-html,
-body {
-    background: #fff;
-}
-
-body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-}
 
 ul,
 ol {
@@ -77,15 +67,6 @@ h1 {
     font-weight: 300;
 }
 
-/** page layout **/
-main {
-    display: grid;
-    grid-template-columns: 1fr 15em;
-    max-width: 100em;
-    width: 90%;
-    margin: 0 auto;
-}
-
 /** enlarge the sections for this demo, so that we have a long scrollable page **/
 section {
     padding-right: 20rem;
@@ -95,6 +76,7 @@ p {
     font-family: var(--font);
     font-weight: 300;
     font-size: 14px;
+    color: white;
 }
 
 h3.cursive {
@@ -114,7 +96,7 @@ section.footer {
 }
 
 .fullPagePadding {
-    padding: 0 var(--horizontalMargin);
+    padding: 0 25px 0 var(--horizontalMargin);
     width: 100vw;
 }
 
@@ -134,38 +116,30 @@ canvas {
     text-align: center;
 }
 
-
-.navigation {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-}
-
 #fulltimeline,
 #shooting {
     height: 80vh;
     width: 100%;
 }
 
-#section1 {
-    /*
-    background: url("https://static.dezeen.com/uploads/2020/06/black-lives-matter-illustrations-roundup-hero-1.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-*/
-}
-
-.yipxaxis path {
+.ylxaxis path {
     stroke: none;
+    color: white;
 }
 
-.yipxaxis text {
+.ylxaxis text {
     font-family: var(--font);
-    <nav class="section-nav" > <ol > <li > <a href="#section0" > Introduction</a > </li > <li > <a href="#section1" > Request &amp;
-    Response</a > </li > <li > <a href="#section2" > Authentication</a > </li > <li > <a href="#section3" > Endpoints</a > <ul > <li class="" > <a href="#endpoints--root" > Root</a > </li > <li class="" > <a href="#endpoints--cities-overview" > Cities Overview</a > </li > <li class="" > <a href="#endpoints--city-detail" > City Detail</a > </li > <li class="" > <a href="#endpoints--city-config" > City Config</a > </li > <li class="" > <a href="#endpoints--city-spots-overview" > City Spots Overview</a > </li > <li class="" > <a href="#endpoints--city-spot-detail" > City Spot Detail</a > </li > <li class="" > <a href="#endpoints--city-icons-overview" > City Icons Overview</a > </li > <li class="" > <a href="#endpoints--city-icon-detail" > City Icon Detail</a > </li > </ul > </li > <li class="" > <a href="#section4" > Links</a > </li > <li class="" > <a href="#section5" > Expanders</a > </li > <li class="" > <a href="#section6" > Filters</a > </li > </ol > </nav > color: #bcbcbc;
+    color: white;
+}
+
+.ylyax path {
+    stroke: 1 px;
+    color: white;
+}
+
+.ylyax text {
+    font-family: var(--font);
+    color: white;
 }
 
 #tooltip {

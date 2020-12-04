@@ -72,7 +72,7 @@ function shooting() { // hi this is lucy
 
 
         var xaxis = svg.append("g")
-            .attr("class", "yipxaxis")
+            .attr("class", "ylxaxis")
             .attr("transform", "translate(0," + (height / 2 + 10) + ")")
             .call(d3.axisBottom(xScale)
                 .ticks(50, "%Y-%m-%d"))

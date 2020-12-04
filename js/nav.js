@@ -11,9 +11,10 @@ window.addEventListener('DOMContentLoaded', () => {
 		});
 	});
 
-	// Track all sections that have an `id` applied
 	document.querySelectorAll('section[id]').forEach((section) => {
 		observer.observe(section);
 	});
 	
 });
+/* credit to https://codemyui.com/jump-link-sidebar-navigation-for-articles/*/
+/*we cited the navigation javascript for the responsive meanu*/

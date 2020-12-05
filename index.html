@@ -151,13 +151,45 @@
         </section>
 
         <section class="fullPage fullPagePadding" id="section6">
-            <div class="row" style="height: 100%; display: flex; align-items: center; justify-content: center;">
-                <div class="col-6" id="radar-chart"></div>
-                <div class="col-4">
-                    <div id="waffle-chart"></div>
-                    <div id="waffle-item-chart"></div>
+            <div>
+                <div style="margin-bottom: 20px;display: flex;justify-content: center;align-items: center;">
+                  <span style="color: #fff;">Group1:</span>
+                  <select class="group1-select-years select-years" style="min-width: 100px;"
+                    onchange="onSelectGroup1Year(this.value)">
+                    <option></option>
+                  </select>
+                  <select class="group1-select-month" style="min-width: 100px;" onchange="onSelectGroup1Month(this.value)">
+                    <option></option>
+                  </select>
                 </div>
-            </div>
+                <div style="margin-bottom: 20px;display: flex;justify-content: center;align-items: center;">
+                  <span style="color: #fff;">Group2:</span>
+                  <select class="group2-select-years select-years" style="min-width: 100px;"
+                    onchange="onSelectGroup2Year(this.value)">
+                    <option></option>
+                  </select>
+                  <select class="group2-select-month" style="min-width: 100px;" onchange="onSelectGroup2Month(this.value)">
+                    <option></option>
+                  </select>
+                </div>
+                <div style="display: flex;flex-direction: column;justify-content: center;align-items: center;">
+                  <div id="radar-chart" style="margin:0 30px;"></div>
+                  <div style="display: flex;flex-wrap: nowrap;width: 100%;">
+                    <div style="width: 50%;">
+                      <h2 style="color: #eee;text-align: center;">Group1</h2>
+                      <div id="waffle-chart" style="display: flex; justify-content: center;"></div>
+                      <div id="waffle-item-chart" style="display: flex; justify-content: center;"></div>
+                    </div>
+                    <div style="width: 50%;">
+                      <h2 style="color: #eee;text-align: center;">Group2</h2>
+                      <div id="waffle-chart-2" style="display: flex; justify-content: center;"></div>
+                      <div id="waffle-item-chart-2" style="display: flex; justify-content: center;"></div>
+                    </div>
+                  </div>
+            
+                </div>
+            
+              </div>
         </section>
 
 

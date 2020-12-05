@@ -1,20 +1,15 @@
-window.addEventListener('DOMContentLoaded', () => {
+$(document).ready(function () {
+    var winHeight = $(window).height();
 
-	const observer = new IntersectionObserver(entries => {
-		entries.forEach(entry => {
-			const id = entry.target.getAttribute('id');
-			if (entry.intersectionRatio > 0) {
-				document.querySelector(`nav li a[href="#${id}"]`).parentElement.classList.add('active');
-			} else {
-				document.querySelector(`nav li a[href="#${id}"]`).parentElement.classList.remove('active');
-			}
-		});
-	});
+    $(window).on('scroll', function () {
+        $('section').each(function () {
+            let id = $(this).attr("id");
 
-	document.querySelectorAll('section[id]').forEach((section) => {
-		observer.observe(section);
-	});
-	
+            if ($(window).scrollTop() >= $(this).offset().top - winHeight / 2 && $(window).scrollTop() <= $(this).offset().top + $(this).height() - winHeight / 2) {
+                $("#nav" + id).addClass('active')
+            } else {
+                $("#nav" + id).removeClass('active')
+            }
+        });
+    });
 });
-/* credit to https://codemyui.com/jump-link-sidebar-navigation-for-articles/*/
-/*we cited the navigation javascript for the responsive meanu*/

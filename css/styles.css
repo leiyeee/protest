@@ -13,78 +13,11 @@ html {
     scroll-behavior: smooth;
 }
 
-nav {
+.sidenav {
     position: fixed;
-    top: 0;
-    left: 0;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-
-}
-
-.section-nav li.active > a {
-    color: #333;
-    font-weight: 500;
-    font-size: 15px;
-}
-
-.section-nav {
-    padding-left: 0;
-    padding-top: 350px;
-    /*border-left: 1px solid #efefef;*/
-}
-
-
-.section-nav a {
-    text-decoration: none;
-    font-size: 12px;
-    display: block;
-    padding: .125rem 0;
-    color: #ccc;
-    transition: all 50ms ease-in-out;
-    /* 💡 This small transition makes setting of the active state smooth */
-}
-
-.section-nav a:hover,
-.section-nav a:focus {
-    color: #666;
-}
-
-
-ul,
-ol {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-li {
-    margin-left: 1rem;
-}
-
-h1 {
-    font-weight: 300;
-}
-
-/** enlarge the sections for this demo, so that we have a long scrollable page **/
-section {
-    padding-right: 20rem;
-}
-
-p {
-    font-family: var(--font);
-    font-weight: 300;
-    font-size: 14px;
-    color: white;
-}
-
-h3.cursive {
-    font-size: 52px;
-    font-family: 'Sacramento', cursive !important;
-    letter-spacing: 5px;
-    font-weight: 300 !important;
-    margin-bottom: 15px;
+    left: 50px;
+    top: 100px;
+    width: 125px;
 }
 
 section.footer {
@@ -101,7 +34,7 @@ section.footer {
 }
 
 .shortText {
-    padding: 0 calc(var(--horizontalMargin)*4);
+    padding: 0 calc(var(--horizontalMargin)*2);
 }
 
 canvas {

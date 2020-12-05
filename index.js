@@ -23,66 +23,10 @@
     }
 
   })
-  const eventsData = _.uniq(_.pluck(rawData, 'Event'))
-  const getEventsData = (data = {}, lastSeriesEventData = []) => {
-    const eventData = []
-    const seriesEventData = []
-    eventsData.forEach((event, i) => {
-      const dataEvent = data[event] || []
-      const sumData = d3.sum(dataEvent, d => d.Attendees)
-      eventData.push({
-        Event: event,
-        Attendees: sumData,
-      })
-      seriesEventData.push({
-        Event: event,
-        Attendees: sumData + (lastSeriesEventData[i] && lastSeriesEventData[i].Attendees || 0),
-      })
-    })
-
-    return {
-      eventData,
-      seriesEventData
-    }
-  }
 
   const rawDataGroupByYear = _.groupBy(rawData, d => `${new Date(d.Date).getUTCFullYear()}`)
-  const rawDataGroupByYearArr = []
-  const years = []
-  const rawDataGroupByEvent = _.groupBy(rawData, d => d.Event)
-  const rawDataEvents = []
-  Array.from({ length: 4 }).forEach((d, i) => {
-    const rawData = []
-    eventsData.forEach(event => {
-      const sum = d3.sum(rawDataGroupByEvent[event], d => d.Attendees)
-      rawData.push({
-        Event: event,
-        Attendees: Number((sum * (i + 1) / 4).toFixed(0))
-      })
-    })
-    rawDataEvents.push(rawData)
-  })
-
-  Object.keys(rawDataGroupByYear).sort((a, b) => Number(a) - Number(b)).forEach((year, i) => {
-    let lastData = rawDataGroupByYearArr[i - 1] || []
-    years.push(year)
-    const data = rawDataGroupByYear[year]
-    const groupByEventData = _.groupBy(data, (d) => d.Event)
-    const { eventData, seriesEventData } = getEventsData(groupByEventData, lastData.seriesEventData)
-    const groupByMouthData = _.groupBy(data, (d) => `${new Date(d.Date).getUTCMonth()}`)
-    const mouthEventsData = []
-    Array.from({ length: 12 }).forEach((d, index) => {
-      if (!groupByMouthData[index]) return
-      mouthEventsData.push(groupByMouthData[index])
-    })
-
-    rawDataGroupByYearArr.push({
-      seriesEventData: seriesEventData,
-      eventsData: eventData,
-      mouthEventsData,
-      year
-    })
-  })
+  let years = []
+  years = Object.keys(rawDataGroupByYear).sort((a, b) => Number(a) - Number(b))
 
   let yearOptions = `<option></option>`
   years.forEach(year => {
@@ -90,19 +34,32 @@
   })
 
   document.querySelector('select.group1-select-years').innerHTML = yearOptions
-  // document.querySelector('select.group2-select-years').innerHTML = yearOptions
-  let currentYear = null
-  const radarChartItem = radarChart('#radar-chart', rawData)
+  document.querySelector('select.group2-select-years').innerHTML = yearOptions
+  let currentGroup1Year = null
+  let currentGroup2Year = null
+  let currentGroup1Month = null
+  let currentGroup2Month = null
+
+  const radarChartItem = radarChart('#radar-chart', rawData, years)
   window.onSelectGroup1Year = function (val) {
     d3.select('#waffle-chart svg').remove()
     d3.select('#waffle-item-chart svg').remove()
-    currentYear = val
+    currentGroup1Year = val
+    currentGroup1Month = null
+    radarChartItem.onClickMouth(currentGroup1Year, '', 'group1')
+
     if (!val) {
-      radarChartItem.onGoOuter()
+      if (getMonthYears() && getMonthStatus()) {
+        radarChartItem.onGoOuter()
+      }
+      // radarChartItem.onClickMouth(currentGroup1Year, '', 'group1')
+
       document.querySelector('select.group1-select-month').innerHTML = '<option></option>'
       return
     }
-    radarChartItem.onClickYears(val)
+    if (getMonthStatus()) {
+      radarChartItem.onClickYears(val, 'group1')
+    }
 
     waffleChart('#waffle-chart', rawData).update(val)
     let monthOptions = `<option></option>`
@@ -116,19 +73,67 @@
   window.onSelectGroup1Month = function (val) {
     d3.select('#waffle-chart svg').remove()
     d3.select('#waffle-item-chart svg').remove()
+    currentGroup1Month = val
     if (!val) {
-      radarChartItem.onClickYears(currentYear)
-
-      waffleChart('#waffle-chart', rawData).update(currentYear)
-      return
+      if (getMonthStatus()) {
+        radarChartItem.onClickYears(currentGroup1Year, 'group1')
+        return
+      }
+      waffleChart('#waffle-chart', rawData).update(currentGroup1Year)
     }
-    radarChartItem.onClickMouth(currentYear, val)
-    waffleItemChart('#waffle-item-chart', rawData).update(currentYear, val)
+    radarChartItem.onClickMouth(currentGroup1Year, val, 'group1')
+    waffleItemChart('#waffle-item-chart', rawData).update(currentGroup1Year, val)
   }
 
 
   window.onSelectGroup2Year = function (val) {
-    radarChartItem.onClickYears(val)
+    d3.select('#waffle-chart-2 svg').remove()
+    d3.select('#waffle-item-chart-2 svg').remove()
+    radarChartItem.onClickMouth(currentGroup2Year, '', 'group2')
+    currentGroup2Year = val
+    currentGroup2Month = null
+    if (!val) {
+      if (getMonthYears() && getMonthStatus()) {
+        radarChartItem.onGoOuter()
+      }
+      document.querySelector('select.group2-select-month').innerHTML = '<option></option>'
+      return
+    }
 
+    if (getMonthStatus()) {
+      radarChartItem.onClickYears(val, 'group2')
+    }
+
+    waffleChart('#waffle-chart-2', rawData).update(val)
+    let monthOptions = `<option></option>`
+    Array.from({ length: 12 }).forEach((t, i) => {
+      monthOptions = monthOptions + `<option value="${i}">${i + 1}</option>`
+    })
+    document.querySelector('select.group2-select-month').innerHTML = monthOptions
+
+  }
+
+  window.onSelectGroup2Month = function (val) {
+    d3.select('#waffle-chart-2 svg').remove()
+    d3.select('#waffle-item-chart-2 svg').remove()
+    currentGroup2Month = val
+    if (!val) {
+      if (getMonthStatus()) {
+        radarChartItem.onClickYears(currentGroup2Year, 'group2')
+        return
+      }
+      waffleChart('#waffle-chart-2', rawData).update(currentGroup2Year)
+      // return
+    }
+    radarChartItem.onClickMouth(currentGroup2Year, val, 'group2')
+    waffleItemChart('#waffle-item-chart-2', rawData).update(currentGroup2Year, val)
+  }
+
+  function getMonthStatus() {
+    return Number.parseInt(currentGroup1Month) !== 0 && !currentGroup1Month && Number.parseInt(currentGroup2Month) !== 0 && !currentGroup2Month
+  }
+
+  function getMonthYears() {
+    return !currentGroup1Year && !currentGroup2Year
   }
 })()

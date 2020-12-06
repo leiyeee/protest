@@ -172,7 +172,7 @@ function radarChart(selector, rawData, years) {
       .append('path')
       .attr('class', 'go-outer')
 
-
+ 
     areaPaths.transition()
       .duration(800)
       .style('fill', d3.schemeCategory10[0])
@@ -247,14 +247,14 @@ function radarChart(selector, rawData, years) {
     }
 
     if (!mouth) return
-
+ const colorscheme = ["#D5C5C8", "#9DA3A4", "#604D53", "#54001c", "#DB7F8E", "#FFDBDA", "#FFB4A2"]
     const colors = {
-      group1: d3.schemeCategory10[0],
+      group1: d3.schemeCategory10[1],
       group2: d3.schemeCategory10[3],
       // group2: d3.scaleLinear(d3.schemeOrRd).domain([0, 11])
     }
     const aearPath = areaG.append('path').attr('class', `go-month go-month-${type}`)
-    const colorscheme = [...d3.schemePastel2, ...d3.schemeTableau10]
+   
     aearPath.transition()
       .duration(800)
       .style("fill", colors[type])

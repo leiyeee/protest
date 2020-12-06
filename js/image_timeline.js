@@ -54,3 +54,5 @@
 })(jQuery);
 
 $("#timeline-1").timeline();
+/*credit to Mert Cukuren*/
+/*We use this JS as animation of scrolling down of the timeline*/

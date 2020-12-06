@@ -7,7 +7,7 @@ function waffleChart(selector, rawDatas) {
         left: 30,
         right: 50,
     }
-    const yearsPadding = 10
+    const yearsPadding = 5
     const eventsData = _.uniq(_.pluck(rawDatas, 'Event'))
     const rawDataGroupByYear = _.groupBy(rawDatas, d => `${new Date(d.Date).getUTCFullYear()}`)
     const innerWidht = width - (margin.left + margin.right) * 2
@@ -17,7 +17,7 @@ function waffleChart(selector, rawDatas) {
 
     const colors = d3.scaleOrdinal()
         .domain(eventsData)
-        .range([...d3.schemeCategory10, ...d3.schemeTableau10])
+        .range(["#D5C5C8", "#9DA3A4", "#604D53", "#54001c", "#DB7F8E", "#FFDBDA", "#FFB4A2"])
 
     const legend = d3.legendColor()
         .cells(eventsData)
@@ -63,7 +63,8 @@ function waffleChart(selector, rawDatas) {
     }
 
     textG = svg.append('g')
-        .attr('transform', `translate(${margin.left}, ${height - margin.top})`)
+        .attr("class", "gkhxaxis")
+        .attr('transform', `translate(${margin.left-10}, ${height - margin.top})`)
 
     rectG = svg.append('g')
         .attr('transform', `translate(${margin.left / 2 + 6}, ${margin.top + 20})`)
@@ -78,7 +79,7 @@ function waffleChart(selector, rawDatas) {
                 months
             } = getMonthDate(currentYear)
             const yearRectWidth = Math.floor((innerWidht - (months.length - 1) * yearsPadding) / months.length)
-            const eachReactWidth = Math.floor(yearRectWidth / eachLineNum)
+            const eachReactWidth = Math.floor(yearRectWidth / (eachLineNum * 2))
             const getTranslate = (index) => index * (yearRectWidth + yearsPadding)
             const maxSteps = d3.max(rawDatasByMonthEvent, d => Math.ceil(d.length / eachLineNum))
             const y = d3.scaleLinear()
@@ -94,7 +95,8 @@ function waffleChart(selector, rawDatas) {
                 .join('text')
                 .attr('transform', (d, i) => `translate(${getTranslate(i)}, 0)`)
                 .attr('fill', '#eee')
-                .attr('stroke', '#eee')
+                .attr('font-family', 'Roboto')
+                /*.attr('stroke', '#eee')*/
                 .text(d => Number(d) + 1)
 
             const eachReact = rectG.selectAll('path')
@@ -106,7 +108,7 @@ function waffleChart(selector, rawDatas) {
                 .join('rect')
                 .style('cursor', 'pointer')
                 .attr('width', eachReactWidth)
-                .attr('height', Math.floor(innerHeight / maxSteps))
+                .attr('height', Math.floor(innerHeight / (maxSteps)))
                 .attr('stroke', '#fff')
                 .attr('fill', '#eee')
                 .attr('stroke-width', 0.5)

@@ -84,7 +84,10 @@ section.footer {
 .fullPage {
     height: 100vh;
 }
-
+.halfPage {
+    height: 300vh;
+     width: 300vw;
+}
 .fullPagePadding {
     padding: 0 25px 0 var(--horizontalMargin);
     width: 100vw;
@@ -344,7 +347,7 @@ p {
 	 transition: 0.4s;
 	 padding: 0 10px;
 	 box-sizing: border-box;
-	 font-family: 'Pathway Gothic One', sans-serif;
+	 font-family: var(--font);
 	 color: #fff;
 }
  .timeline__content-desc {
@@ -388,7 +391,7 @@ p {
 	 position: absolute;
 	 color: rgba(255, 255, 255, .5);
 	 font-size: 13px;
-	 font-family: 'Pathway Gothic One', sans-serif;
+	 font-family: var(--font);
 	 border-left: 2px solid rgba(255, 255, 255, .5);
 	 top: 70%;
 	 margin-top: -5px;
@@ -475,9 +478,10 @@ p {
 }
  .timeline-header__subtitle {
 	 color: rgba(255, 255, 255, .5);
-	 font-family: 'Pathway Gothic One', sans-serif;
+	 font-family: var(--font);
 	 font-size: 16px;
 	 letter-spacing: 5px;
 	 margin: 10px 0 0 0;
 	 font-weight: normal;
 }
+

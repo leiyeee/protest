@@ -18,6 +18,7 @@ function waffleItemChart(selector, rawDatas) {
     let reactG
 
     const rawDataGroupByYear = _.groupBy(rawDatas, d => `${new Date(d.Date).getUTCFullYear()}`)
+
     function getMonthDate(currentYear, curMonth) {
         const rawDataGroupByMonths = _.groupBy(rawDataGroupByYear[currentYear], d => `${new Date(d.Date).getUTCMonth()}`)
         const rawDataGroupByMonth = rawDataGroupByMonths[curMonth]
@@ -30,19 +31,27 @@ function waffleItemChart(selector, rawDatas) {
                 hasEventsData.push(event)
                 const reduceData = _.reduce(monthEventData, function (acc, cur) {
                     const Articles = Number.parseInt(cur['Total Articles'])
-                    const articelsArr = Array.from({ length: Articles })
-                        .map(() => ({ ...cur, 'Total Articles': 1 }))
+                    const articelsArr = Array.from({
+                            length: Articles
+                        })
+                        .map(() => ({
+                            ...cur,
+                            'Total Articles': 1
+                        }))
                     return [...acc, ...articelsArr]
                 }, [])
                 rawDatasByMonthEvent = [...rawDatasByMonthEvent, ...reduceData]
             }
         })
-        return { rawDatasByMonthEvent, hasEventsData }
+        return {
+            rawDatasByMonthEvent,
+            hasEventsData
+        }
     }
 
     const colors = d3.scaleOrdinal()
         .domain(eventsData)
-        .range([...d3.schemeCategory10, ...d3.schemeTableau10])
+        .range(["#D5C5C8", "#9DA3A4", "#604D53", "#54001c", "#DB7F8E", "#FFDBDA", "#FFB4A2"])
 
     const svg = d3.select(selector).append("svg")
         .attr("width", width)
@@ -55,7 +64,10 @@ function waffleItemChart(selector, rawDatas) {
 
     return {
         update: function (currentYear = 2017, currentMonth = 6) {
-            const { rawDatasByMonthEvent, hasEventsData } = getMonthDate(currentYear, currentMonth)
+            const {
+                rawDatasByMonthEvent,
+                hasEventsData
+            } = getMonthDate(currentYear, currentMonth)
             const rawDatasGroupByEvent = _.groupBy(rawDatasByMonthEvent, d => d.Event)
             const hasLines = Math.ceil(hasEventsData.length / eachEventRect)
             const eachEventRectHeight = Math.floor((innerHeight - (hasLines - 1) * eventsPadding) / hasLines)
@@ -81,7 +93,7 @@ function waffleItemChart(selector, rawDatas) {
                 .attr('stroke', '#fff')
                 .style('cursor', 'pointer')
                 .attr('stroke-width', 0.5)
-                .attr('fill', '#eee')
+                .attr('fill', '#000000')
                 .attr('x', (d, i) => i % eachRect * eachReactWidth)
                 .attr('y', (d, i) => y(Math.floor(i / eachRect)))
 

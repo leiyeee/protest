@@ -42,8 +42,13 @@ function waffleChart(selector, rawDatas) {
                 if (monthEventData) {
                     const reduceData = _.reduce(monthEventData, function (acc, cur) {
                         const Articles = Number.parseInt(cur['Total Articles'])
-                        const articelsArr = Array.from({ length: Articles })
-                            .map(() => ({ ...cur, 'Total Articles': 1 }))
+                        const articelsArr = Array.from({
+                                length: Articles
+                            })
+                            .map(() => ({
+                                ...cur,
+                                'Total Articles': 1
+                            }))
                         return [...acc, ...articelsArr]
                     }, [])
                     rawData = [...rawData, ...reduceData]
@@ -51,7 +56,10 @@ function waffleChart(selector, rawDatas) {
             })
             rawDatasByMonthEvent.push(rawData)
         })
-        return { rawDatasByMonthEvent, months }
+        return {
+            rawDatasByMonthEvent,
+            months
+        }
     }
 
     textG = svg.append('g')
@@ -65,7 +73,10 @@ function waffleChart(selector, rawDatas) {
 
     return {
         update: function (currentYear = 2017) {
-            const { rawDatasByMonthEvent, months } = getMonthDate(currentYear)
+            const {
+                rawDatasByMonthEvent,
+                months
+            } = getMonthDate(currentYear)
             const yearRectWidth = Math.floor((innerWidht - (months.length - 1) * yearsPadding) / months.length)
             const eachReactWidth = Math.floor(yearRectWidth / eachLineNum)
             const getTranslate = (index) => index * (yearRectWidth + yearsPadding)

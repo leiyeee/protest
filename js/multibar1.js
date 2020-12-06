@@ -5,10 +5,10 @@ function yelei88() {
             top: 150,
             right: 30,
             bottom: 20,
-            left: 50
+            left: 80
         },
-        width = 600 - margin.left - margin.right,
-        height = 500 - margin.top - margin.bottom;
+        width = 550 - margin.left - margin.right,
+        height = 450 - margin.top - margin.bottom;
 
     // append the svg object to the body of the page
     var svg = d3.select("#mybar2")

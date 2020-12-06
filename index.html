@@ -27,38 +27,41 @@
 </head>
 
 <body>
+    <!--side navigation-->
     <div class="sidenav">
-        <h2 style="padding-left: 30px;">A story of protests</h2>
         <nav class="section-nav">
-            <ul class="scroll">
-                <li class="nav">
-                    <div class="selected"></div><a class="nav active" id="navibmoverview" href="#section0">Overview</ a>
+            <ol>
+                <li><a href="#section0">Introduction</a></li>
+                <li><a href="#section1">What happens in the U.S now</a>
+                    <ul>
+                        <li class=""><a href="#section2">Mapping of BLM protests</a></li>
+                    </ul>
                 </li>
-                <li class="nav">
-                    <div class="selected"></div><a class="nav" id="navprojects" href="#section1">1</ a>
+                <li><a href="#section3">What happened in the U.S in the past</a>
+                    <ul>
+                        <li class=""><a href="#section4">2017-2020</a></li>
+                        <li class=""><a href="#section5">2015-2019</a></li>
+                        <li class=""><a href="#section6">1950-2005</a></li>
+                    </ul>
                 </li>
-                <li class="nav">
-                    <div class="selected"></div><a class="nav" id="navresources" href="#section2">2</ a>
-                </li>
-                <li class="nav">
-                    <div class="selected"></div><a class="nav" id="navteam" href="#section3">3</ a>
-                </li>
-                <li class="nav">
-                    <div class="selected"></div><a class="nav" id="navteam" href="#section4">4</ a>
-                </li>
-                <li class="nav">
-                    <div class="selected"></div><a class="nav" id="navteam" href="#section5">5</ a>
-                </li>
-                <li class="nav">
-                    <div class="selected"></div><a class="nav" id="navteam" href="#section6">6</ a>
-                </li>
-            </ul>
+                <li><a href="#section7">What happened in other countries</a></li>
+                <li><a href="#section8">Why did these protests happened</a></li>
+            </ol>
         </nav>
     </div>
+
+    <!--    introduction of the project-->
     <section class="fullPage" id="section0">
         <div id="p5"></div>
         <div class="introText" data-aos="fade-in">
-            <h3 class="cursive">the story of protests</h3>
+            <div class="cursive">
+                <p class="title t2">A story of</p>
+                <p class="title">
+                    <span class="word t1">protests</span>
+                    <span class="word t1">democracy</span>
+                    <span class="word t1">minorities</span>
+                </p>
+            </div>
             <p class="shortText" data-aos="fade-in">This data visualization applauds at the counter-hegemonic voices raised throughout history, in support of the marginalized, silenced, under-represented minorities' journey towards social justice. </p>
         </div>
     </section>
@@ -66,7 +69,7 @@
 
     <section class="fullPage fullPagePadding" id="section1">
         <div id="video">
-            <video autoplay muted loop id="myVideo">
+            <video autoplay muted id="myVideo">
                 <source src="assets/blm.mp4" type="video/mp4">
             </video>
         </div>
@@ -95,104 +98,22 @@
                 Nam vitae fermentum metus. Nunc vitae elit sapien. Quisque imperdiet purus ut metus accumsan, ut lacinia eros placerat. Donec tincidunt enim molestie, tempus tortor vitae, euismod elit. Vestibulum hendrerit libero ac odio blandit, et porttitor nibh suscipit. Cras imperdiet tempus imperdiet. Praesent eu tellus purus. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
         </div>
     </section>
-
     <section class="fullPage fullPagePadding" id="section2">
         <div class="row" style="height: 100%; display: flex; align-items: center; justify-content: center;">
-            <div class="col-6">
+            <div class="col-9">
                 <div id="geo"></div>
             </div>
-
             <div class="col-2">
                 <div class="row">
-                    <div class="col-sm">
+                    <div class="col-sm" style="color: white">
                         <div>
-                            <div class="circle"></div><span><a style="color: white">&emsp;Peaceful protest</a></span>
-
-        </section>
-
-        <section class="fullPage fullPagePadding" id="section3">
-            <p>shooting</p>
-            <div class="horizontalscroll">
-                <div id="shooting"></div>
-            </div>
-        </section>
-
-        <section class="fullPage fullPagePadding" id="section4">
-            <div id="fulltimeline"></div>
-            <form id="ylcountries" class="btn-group btn-group-toggle" style="display: flex; align-items: center; justify-content: center;" data-toggle="buttons">
-                <label class="btn btn-light active">
-                    <input type="radio" name="countries" id="defaultCountry" autocomplete="" checked value="United States">United States</label>
-                <label class="btn btn-light">
-                    <input type="radio" name="countries" autocomplete="off" value="China">China</label>
-            </form>
-        </section>
-
-        <section class="fullPage fullPagePadding" id="section6">
-            <div>
-                <div style="margin-bottom: 20px;display: flex;justify-content: center;align-items: center;">
-                  <span style="color: #fff;">Group1:</span>
-                  <select class="group1-select-years select-years" style="min-width: 100px;"
-                    onchange="onSelectGroup1Year(this.value)">
-                    <option></option>
-                  </select>
-                  <select class="group1-select-month" style="min-width: 100px;" onchange="onSelectGroup1Month(this.value)">
-                    <option></option>
-                  </select>
-                </div>
-                <div style="margin-bottom: 20px;display: flex;justify-content: center;align-items: center;">
-                  <span style="color: #fff;">Group2:</span>
-                  <select class="group2-select-years select-years" style="min-width: 100px;"
-                    onchange="onSelectGroup2Year(this.value)">
-                    <option></option>
-                  </select>
-                  <select class="group2-select-month" style="min-width: 100px;" onchange="onSelectGroup2Month(this.value)">
-                    <option></option>
-                  </select>
-                </div>
-                <div style="display: flex;flex-direction: column;justify-content: center;align-items: center;">
-                  <div id="radar-chart" style="margin:0 30px;"></div>
-                  <div style="display: flex;flex-wrap: nowrap;width: 100%;">
-                    <div style="width: 50%;">
-                      <h2 style="color: #eee;text-align: center;">Group1</h2>
-                      <div id="waffle-chart" style="display: flex; justify-content: center;"></div>
-                      <div id="waffle-item-chart" style="display: flex; justify-content: center;"></div>
-                    </div>
-                    <div style="width: 50%;">
-                      <h2 style="color: #eee;text-align: center;">Group2</h2>
-                      <div id="waffle-chart-2" style="display: flex; justify-content: center;"></div>
-                      <div id="waffle-item-chart-2" style="display: flex; justify-content: center;"></div>
-                    </div>
-                  </div>
-            
-                </div>
-            
-              </div>
-        </section>
-
-        <section class="fullPage fullPagePadding" id="section2">
-            <div class="row" style="height: 100%; display: flex; align-items: center; justify-content: center;">
-                <div class="col-9">
-                    <div id="geo"></div>
-                </div>
-                <div class="col-2">
-                    <div class="row">
-                        <div class="col-sm">
-                            <div>
-                                <div class="circle"></div><span><a style="color: white">&emsp;Peaceful protest</a></span>
-                            </div>
-                            <div>
-                                <div class="circle red-circle"></div><a style="color: white"><span>&emsp;Violent protest</span></a>
-                            </div>
-                            <div>
-                                <div class="circle blue-circle"></div><a style="color: white"><span>&emsp;Disruptive protest</span></a>
-                            </div>
-
+                            <div class="circle"></div><span><a>&emsp;Peaceful protest</a></span>
                         </div>
                         <div>
-                            <div class="circle red-circle"></div><a style="color: white"><span>&emsp;Violent protest</span></a>
+                            <div class="circle red-circle"></div><span>&emsp;Violent protest</span>
                         </div>
                         <div>
-                            <div class="circle blue-circle"></div><a style="color: white"><span>&emsp;Disruptive protest</span></a>
+                            <div class="circle blue-circle"></div><span>&emsp;Disruptive protest</span>
                         </div>
                     </div>
                 </div>
@@ -208,14 +129,155 @@
 
     </section>
 
-    <section class="fullPage fullPagePadding" id="section3">
+
+    <section class="fullPagePadding fullpage" id="section3">
+        <div class="timeline-container" id="timeline-1">
+            <div class="timeline-header">
+                <h2 class="timeline-header__title">Protest history of U.S.A</h2>
+                <h3 class="timeline-header__subtitle">1960-2020</h3>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item" data-text="Martin Luther King Jr ">
+                    <div class="timeline__content"><img class="timeline__img" src="img/1.jfif" />
+                        <h2 class="timeline__content-title">1963</h2>
+                        <p class="timeline__content-desc">The March on Washington for Jobs and Freedom was to protest the systemic disenfranchisement of black Americans.</p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-text="Anti-Vietnam War protest.">
+                    <div class="timeline__content"><img class="timeline__img" src="img/2.jfif" />
+                        <h2 class="timeline__content-title">1969</h2>
+                        <p class="timeline__content-desc">Between 500,000 and 600,000 people demonstrated against the Vietnam War, which had led to thousands of deaths by 1969. Coalitions started organizing smaller rallies in 1967, eventually leading up to the large anti-Vietnam march two years later.</p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-text="Solidarity Day March 1981">
+                    <div class="timeline__content"><img class="timeline__img" src="img/3.jfif" />
+                        <h2 class="timeline__content-title">1981</h2>
+                        <p class="timeline__content-desc">The Solidarity Day march was a rally of about 260,000 people in DC in 1981. It was sparked by President Ronald Reagan's decision to fire 12,000 air traffic controllers who went on strike and demanded wage increases and safer working conditions.</p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-text="Anti-Nuclear March in New York.">
+                    <div class="timeline__content"><img class="timeline__img" src="img/4.jfif" />
+                        <h2 class="timeline__content-title">1982</h2>
+                        <p class="timeline__content-desc">In 1982, around a million protesters filled Central Park to protest nuclear weapons during Ronald Reagan's presidency.
+                            A New York Times article from 1982 said, "The vast parade and rally, organized by a coalition of peace groups, brought together pacifists and anarchists, children and Buddhist monks, Roman Catholic bishops and Communist Party leaders, university students and union members."</p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-text="Million Man March.">
+                    <div class="timeline__content"><img class="timeline__img" src="img/5.jfif" />
+                        <h2 class="timeline__content-title">1995</h2>
+                        <p class="timeline__content-desc">In 1995, Washington, DC's Million Man March took place with a stated aim to unite the black community. Estimates for the number of attendees vary from 400,000 to 1.1 million people.Notable speakers at the march included Jesse Jackson, Rosa Parks, Cornel West, and Maya Angelou.</p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-text="LGBT March on Washington, DC in 1993.">
+                    <div class="timeline__content"><img class="timeline__img" src="img/6.jfif" />
+                        <h2 class="timeline__content-title">1993</h2>
+                        <p class="timeline__content-desc">Between 800,000 and a million people marched on the National Mall in 1993 for LGBTQ rights. The organizers' primary demands were civil rights bills against discrimination, an increase in AIDS research funding, and reproductive rights.</p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-text="Million Woman March.">
+                    <div class="timeline__content"><img class="timeline__img" src="img/7.jfif" />
+                        <h2 class="timeline__content-title">1997</h2>
+                        <p class="timeline__content-desc">In 1997, two years after the Million Man March, anywhere from 500,000 to 2 million people convened for the Million Woman March. The event, which was held on a rainy Saturday in 1997, included prayer, musical performances, and speeches by local organizers and civil rights activists.</p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-text="Iraq War protest.">
+                    <div class="timeline__content"><img class="timeline__img" src="img/8.jfif" />
+                        <h2 class="timeline__content-title">2003</h2>
+                        <p class="timeline__content-desc">As a protest to George W. Bush's decision to invade Iraq, between 10 to 15 million people marched in 600 cities across the world in 2003. At least 500,000 people protested in American cities, including New York City, Los Angeles, and Seattle.<em>It's known as the biggest protest in world history.</em></p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-text="March for Women’s Lives.">
+                    <div class="timeline__content"><img class="timeline__img" src="img/9.jfif" />
+                        <h2 class="timeline__content-title">2004</h2>
+                        <p class="timeline__content-desc">In 2004, the March for Women's Lives was one of the largest protests in American history, with between 500,000 and 1.1 million attendees.</p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-text="Demonstrators make their way down Sixth Avenue during the People's Climate March.">
+                    <div class="timeline__content"><img class="timeline__img" src="img/10.jfif" />
+                        <h2 class="timeline__content-title">2014</h2>
+                        <p class="timeline__content-desc">The People's Climate March attracted between 311,000 and 400,000 participants. It is regarded as the biggest call-to-action on climate change.Though the largest demonstration was in New York City, there were nearly 2,700 climate-related demonstrations in more than 150 countries. </p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-text="March for Science protesters.">
+                    <div class="timeline__content"><img class="timeline__img" src="img/11.jfif" />
+                        <h2 class="timeline__content-title">2017</h2>
+                        <p class="timeline__content-desc">The March for Science was held on Earth Day and attracted more than a million protesters around the world. Participants advocated for a global focus on the International Panel on Climate Change's report on the catastrophic effects of a 1.5 degree Celsius increase in global temperature. Many also protested the Trump administration's budget cuts to the Environmental Protection Agency.</p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-text="A crowd at the Women's March on Washington, DC">
+                    <div class="timeline__content"><img class="timeline__img" src="img/12.jfif" />
+                        <h2 class="timeline__content-title">2017-2018</h2>
+                        <p class="timeline__content-desc">The 2017 Women's March is considered the largest single-day protest in US history, attracting anywhere from 3,267,134 and 5,246,670 people, according to data compiled by The Washington Post. The 2018 Women's March attracted between 1.6 million and 2.5 million.</p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-text="March For Our Lives participants">
+                    <div class="timeline__content"><img class="timeline__img" src="img/13.jfif" />
+                        <h2 class="timeline__content-title">2018</h2>
+                        <p class="timeline__content-desc">TThe protest attracted between 1.2 and 2 million people. It occured a month after the Marjory Stoneman Douglas High School shooting, which many referred to as a turning point for gun control legislation.The March for Our Lives mission is "to harness the power of young people across the country to fight for sensible gun violence prevention policies that save lives."
+                        </p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-text="Protesters in New York demonstrate against the the death of George Floyd.">
+                    <div class="timeline__content"><img class="timeline__img" src="img/14.jfif" />
+                        <h2 class="timeline__content-title">2020</h2>
+                        <p class="timeline__content-desc">Tens of thousands of people have protested against police brutality and the systemic racism that contributed to the deaths of George Floyd, Ahmaud Arbery, Breonna Taylor, and many others.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--Time line of all types of protests in the U.S in recent four years-->
+    <section class="fullPage fullPagePadding" id="section4">
+        <div class="row" style="height: 100%; display: flex; align-items: center; justify-content: center;">
+            <div class="col-4" id="radar-chart">
+                <div style="margin-bottom: 20px;display: flex;justify-content: center;align-items: center;">
+                    <span style="color: #fff;">Group1:</span>
+                    <select class="group1-select-years select-years" style="min-width: 100px;" onchange="onSelectGroup1Year(this.value)">
+                        <option></option>
+                    </select>
+                    <select class="group1-select-month" style="min-width: 100px;" onchange="onSelectGroup1Month(this.value)">
+                        <option></option>
+                    </select>
+                </div>
+                <div style="margin-bottom: 20px;display: flex;justify-content: center;align-items: center;">
+                    <span style="color: #fff;">Group2:</span>
+                    <select class="group2-select-years select-years" style="min-width: 100px;" onchange="onSelectGroup2Year(this.value)">
+                        <option></option>
+                    </select>
+                    <select class="group2-select-month" style="min-width: 100px;" onchange="onSelectGroup2Month(this.value)">
+                        <option></option>
+                    </select>
+                </div>
+            </div>
+            <div class="col" style="display: flex;flex-wrap: nowrap;width: 100%;">
+                <div style="width: 50%;">
+                    <h2 style="color: #eee;text-align: center;">Group1</h2>
+                    <div id="waffle-chart" style="display: flex; justify-content: center;"></div>
+                    <div id="waffle-item-chart" style="display: flex; justify-content: center;"></div>
+                </div>
+                <div style="width: 50%;">
+                    <h2 style="color: #eee;text-align: center;">Group2</h2>
+                    <div id="waffle-chart-2" style="display: flex; justify-content: center;"></div>
+                    <div id="waffle-item-chart-2" style="display: flex; justify-content: center;"></div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- shooting amount of people in the past four years-->
+    <section class="fullPage fullPagePadding" id="section5">
         <p>shooting</p>
         <div class="horizontalscroll">
             <div id="shooting"></div>
         </div>
     </section>
 
-    <section class="fullPage fullPagePadding" id="section4">
+
+    <!--Time line of all types of protests in the U.S from 1950-2009-->
+    <section class="fullPage fullPagePadding" id="section6">
         <div id="fulltimeline"></div>
         <form id="ylcountries" class="btn-group btn-group-toggle" style="display: flex; align-items: center; justify-content: center;" data-toggle="buttons">
             <label class="btn btn-light active">
@@ -224,47 +286,22 @@
                 <input type="radio" name="countries" autocomplete="off" value="China">China</label>
         </form>
     </section>
-
-    <section class="fullPage fullPagePadding" id="section5">
+    <section class="fullPage fullPagePadding" id="section7"></section>
+    <section class="fullPage fullPagePadding" id="section8">
         <div class="row" style="height: 100%; display: flex; align-items: center; justify-content: center;">
             <div class="col-sm-2">
                 <p class="red">The Census Bureau report on income, poverty, and health insurance coverage in 2019 reveals impressive growth in median household income relative to 2018 across all racial and ethnic groups, but income gaps persist. While the Census cautions that the 2019 income estimates may be overstated due to a decline in response rates for the survey administered in March of this year, real median household income increased 10.6% among Asian households (from $88,774 to $98,174), 8.5% among Black households (from $42,447 to $46,073), 7.1% among Hispanic households (from $52,382 to $56,113), and 5.7% among non-Hispanic white households (from $71,922 to $76,057)</p>
             </div>
-            <div class="col">
-                <div id="mybar1"></div>
-            </div>
-            <div class="col">
-                <div id="mybar2"></div>
-            </div>
-
-        </div>
-    </section>
-
-
-    <section class="fullPage fullPagePadding" id="section6">
-        <div class="row" style="height: 100%; display: flex; align-items: center; justify-content: center;">
-            <div class="col-6" id="radar-chart"></div>
             <div class="col-4">
-                <div id="waffle-chart"></div>
-                <div id="waffle-item-chart"></div>
+                <div id="mybar1" style="color: white"></div>
             </div>
+            <div class="col-4">
+                <div id="mybar2" style="color: white"></div>
+            </div>
+
         </div>
     </section>
 
-   <section class="fullPage fullPagePadding" id="section5">
-            <div class="row" style="height: 100%; display: flex; align-items: center; justify-content: center;">
-                <div class="col-sm-2">
-                    <p class="red">The Census Bureau report on income, poverty, and health insurance coverage in 2019 reveals impressive growth in median household income relative to 2018 across all racial and ethnic groups, but income gaps persist. While the Census cautions that the 2019 income estimates may be overstated due to a decline in response rates for the survey administered in March of this year, real median household income increased 10.6% among Asian households (from $88,774 to $98,174), 8.5% among Black households (from $42,447 to $46,073), 7.1% among Hispanic households (from $52,382 to $56,113), and 5.7% among non-Hispanic white households (from $71,922 to $76,057)</p>
-                </div>
-                <div class="col">
-                    <div id="mybar1"></div>
-                </div>
-                <div class="col">
-                    <div id="mybar2"></div>
-                </div>
-
-            </div>
-        </section>
 
 
 
@@ -283,7 +320,11 @@
     <script src="js/fulltimeline.js"></script>
     <script src="js/aos.js"></script>
     <script src="js/nav.js"></script>
+    <script src="js/text.js"></script>
     <script src="js/animate.js"></script>
+    <script src="js/image_timeline.js"></script>
+
+
 
     <!--kaihong-->
     <script src="libs/d3-legend.min.js"></script>
@@ -293,6 +334,4 @@
     <script src="js/waffleItemChart.js"></script>
     <script src="index.js"></script>
     <script src="js/main.js"></script> <!-- put this at the bery bottom -->
-</body>
-
-</html>
+</body></html>

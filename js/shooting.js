@@ -1,7 +1,7 @@
 function shooting() { // hi this is lucy
 
     var width = 20000,
-        height = document.getElementById("horizontalscroll").offsetHeight,
+        height = document.getElementById("shooting").offsetHeight,
         margin = 10;
 
     var parseTime = d3.timeParse("%Y-%m-%d");

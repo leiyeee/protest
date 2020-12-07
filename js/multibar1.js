@@ -55,7 +55,7 @@ function yelei88() {
         // color palette = one color per subgroup
         var color = d3.scaleOrdinal()
             .domain(subgroups)
-            .range(["#D5C5C8", "#9DA3A4", "#604D53", "#54001c", "#DB7F8E", "#FFDBDA", "#FFB4A2"])
+            .range(["#9E0C3C", "#B01135", "#CD1B2D", "#E82322", "#FB291B", "#ff5555", "#ff8080", "#ffaaaa"])
 
         // Show the bars
         svg.append("g")

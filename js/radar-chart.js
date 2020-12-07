@@ -1,7 +1,7 @@
 function radarChart(selector, rawData, years) {
-  const width = 500
+  const width = 400
   const height = width
-  const margin = 10
+  const margin = 20
   const outerRadius = width / 2 - margin
   const innerRadius = width / 10
   // curveLinearClosed
@@ -76,7 +76,7 @@ function radarChart(selector, rawData, years) {
   const yAxis = g => g
     .attr("text-anchor", "middle")
     .attr("font-family", "sans-serif")
-    .attr("font-size", 10)
+    .attr("font-size", 6)
     .call(g => g.selectAll("g")
       .data(y.ticks().reverse())
       .join("g")
@@ -89,7 +89,7 @@ function radarChart(selector, rawData, years) {
       .call(g => g.append("text")
         .attr("y", d => -y(d))
         .attr("dy", "0.35em")
-        .attr("stroke-width", 5)
+        .attr("stroke-width", 3)
         .text((x, i) => {
           return x >= 1000 ? (x / 1000).toFixed(1) + 'k' : x
         })
@@ -171,12 +171,13 @@ function radarChart(selector, rawData, years) {
       // .data(firstRawDataEvents)
       .append('path')
       .attr('class', 'go-outer')
+    
+    const colorpallet = ["#D5C5C8", "#9DA3A4", "#604D53", "#54001c", "#DB7F8E", "#FFDBDA", "#FFB4A2"]
 
- 
     areaPaths.transition()
       .duration(800)
-      .style('fill', d3.schemeCategory10[0])
-      .style('fill-opacity', 0.5)
+        .style("fill", "#ddd")
+      .style('fill-opacity', 1)
       .style('cursor', 'pointer')
       .attr('data-index', (d, i) => i)
       .attr("d", area
@@ -207,15 +208,15 @@ function radarChart(selector, rawData, years) {
       areaG.selectAll(`path.go-years-${type}`).remove()
     }
 
-
-
     const areaPaths = areaG
       .append('path')
       .attr('class', `go-years go-years-${type}`)
 
+    const colorpallet = ["#D5C5C8", "#9DA3A4", "#604D53", "#54001c", "#DB7F8E", "#FFDBDA", "#FFB4A2"]
+      
     areaPaths.transition()
       .duration(800)
-      .style('fill', d3.schemeCategory10[Number(year) - 2016])
+      .style('fill', colorpallet[Number(year) - 2015])
       .style('fill-opacity', 0.8)
       .style('cursor', 'pointer')
       .attr('data-year', year)
@@ -247,19 +248,21 @@ function radarChart(selector, rawData, years) {
     }
 
     if (!mouth) return
- const colorscheme = ["#D5C5C8", "#9DA3A4", "#604D53", "#54001c", "#DB7F8E", "#FFDBDA", "#FFB4A2"]
+    
+    const colorpallet = ["#D5C5C8", "#9DA3A4", "#604D53", "#54001c", "#DB7F8E", "#FFDBDA", "#FFB4A2"]
+
     const colors = {
-      group1: d3.schemeCategory10[1],
-      group2: d3.schemeCategory10[3],
+      group1: colorpallet[0],
+      group2: colorpallet[6],
       // group2: d3.scaleLinear(d3.schemeOrRd).domain([0, 11])
     }
     const aearPath = areaG.append('path').attr('class', `go-month go-month-${type}`)
-   
+    //const colorscheme = [...d3.schemePastel2, ...d3.schemeTableau10]
     aearPath.transition()
       .duration(800)
       .style("fill", colors[type])
       // .style("fill", colorscheme[mouth])
-      .style("fill-opacity", 0.5)
+      .style("fill-opacity", 0.8)
       .style('cursor', 'pointer')
       .attr("d", area
         .innerRadius(y(0))

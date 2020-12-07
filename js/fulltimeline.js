@@ -1,4 +1,4 @@
-function fulltimeline() { // hi this is lucy
+function fulltimeline() {
  
     var width = document.getElementById("fulltimeline").offsetWidth,
         height = document.getElementById("fulltimeline").offsetHeight,
@@ -22,7 +22,7 @@ function fulltimeline() { // hi this is lucy
     svg.style("overflow", "hidden")
         .style("z-index", 0)
 
-    var selected = $("input[type='radio'][name='countries']:checked").val();
+/*    var selected = $("input[type='radio'][name='countries']:checked").val();*/
 
     d3.csv("data/ssp_simplified.csv").then(function (data) {
 
@@ -38,17 +38,17 @@ function fulltimeline() { // hi this is lucy
             }
         });
 
-        console.log(countries);
+        console.log(data);
 
         data = data.filter(function (d) {
             return d.date_text.includes("unknown") == false &&
-                d.country_name == selected &&
+                d.country_name == "United States" &&
                 d.initiator.includes("unknown") == false;
         })
 
         var actionScale = d3.scaleOrdinal()
             .domain(actions)
-            .range(d3.schemeSet3);
+            .range(["#DB7F8E", "#9DA3A4", "#604D53"]);
 
         var timeScale = d3.scaleTime()
             .domain(d3.extent(data, function (d) {
@@ -66,7 +66,7 @@ function fulltimeline() { // hi this is lucy
             .attr("class", "tl xaxistext")
             .attr("x", width - margin / 2)
             .attr("y", height - margin / 2)
-            .text("Timeline")
+          /*  .text("Timeline")*/
             .style("text-anchor", "end")
             .style("fill", "#bcbcbc");
 
@@ -150,7 +150,7 @@ function fulltimeline() { // hi this is lucy
             .on("mouseout", function (event, d) {
                 tooltip.transition().style("opacity", 0).transition().style("top", 0 + "px")
             })
-            .on("click", function (d) {
+           /* .on("click", function (d) {
                 let button = document.createElement("button");
                 button.className = "policy bx--btn--primary btnn";
                 button.innerHTML = d.intervention;
@@ -161,12 +161,15 @@ function fulltimeline() { // hi this is lucy
 
                 d3.select(this).transition().style("fill", "white");
             })
-
+*/
 
     });
 
 };
 
+//fulltimeline();
+/*
 $('#ylcountries').click(function () {
     fulltimeline();
 });
+*/

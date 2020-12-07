@@ -4,7 +4,8 @@ function noop() {};
 
 $(window).scroll(function () {
     showfulltimeline();
-//    showgeo();
+    showfulltimeline_ch();
+    //    showgeo();
     moveVideo();
     hideVideo();
 });
@@ -17,6 +18,19 @@ function showfulltimeline() {
     if (wS > (hT + hH - wH)) {
         showfulltimeline = noop;
         fulltimeline();
+        noLoop();
+    }
+};
+
+function showfulltimeline_ch() {
+    var hT = $('#fulltimeline_china').offset().top,
+        hH = $('#fulltimeline_china').outerHeight(),
+        wH = $(window).height(),
+        wS = $(this).scrollTop();
+    if (wS > (hT + hH - wH)) {
+        showfulltimeline_ch = noop;
+        fulltimeline_ch();
+        noLoop();
     }
 };
 

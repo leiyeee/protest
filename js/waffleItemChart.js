@@ -93,7 +93,7 @@ function waffleItemChart(selector, rawDatas) {
                 .attr('stroke', '#fff')
                 .style('cursor', 'pointer')
                 .attr('stroke-width', 0.5)
-                .attr('fill', '#000000')
+                .attr('fill', '#eee')
                 .attr('x', (d, i) => i % eachRect * eachReactWidth)
                 .attr('y', (d, i) => y(Math.floor(i / eachRect)))
 

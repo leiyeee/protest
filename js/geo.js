@@ -47,7 +47,7 @@ function geo() {
 
             let eventtypeScale = d3.scaleOrdinal()
                 .domain(event_type)
-                .range(["9DA3A4", "DB7F8E", "FFDBDA"]);
+                .range(["#ff0000", "#ff4d4d", "#ffb3b3"]);
             //
             //            const zoom = d3.zoom()
             //                .scaleExtent([1, 40])
@@ -83,11 +83,11 @@ function geo() {
                 })
                 .style("fill", function (d) {
                     if (d.SUB_EVENT_TYPE == "Excessive force against protesters" || d.SUB_EVENT_TYPE == "Disrupted weapons use" || d.SUB_EVENT_TYPE == "Armed clash") {
-                        return "9DA3A4";
+                        return "ff0000";
                     } else if (d.SUB_EVENT_TYPE == "Peaceful protest" || d.SUB_EVENT_TYPE == "Protest with intervention" || d.SUB_EVENT_TYPE == "Other" || d.SUB_EVENT_TYPE == "Change to group/activity") {
-                        return "DB7F8E";
+                        return "ff4d4d";
                     } else {
-                        return "FFDBDA";
+                        return "ffb3b3";
                     }
                 })
                 /*  .on("mouseover", function (d) {

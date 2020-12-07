@@ -252,9 +252,9 @@ video {
     height: 10px;
     border-radius: 50px;
 
-    color: #fff;
+    color: #ffaaaa;
     line-height: 100px;
-    background: #FFDBDA;
+    background: #ff5555;
     display: inline-block;
 
 }
@@ -264,7 +264,7 @@ video {
 }
 
 .blue-circle {
-    background: #9DA3A4;
+    background: #E82322;
 }
 
 .legendText {
